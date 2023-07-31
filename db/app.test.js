@@ -74,6 +74,75 @@ describe('Get : User', () => {
       })
 })
 
+describe('Post : User', () => {
+  test('Returns Correct Objects', () => {
+    const testUser = {
+      name: 'sam',
+      username : 'sam123',
+      email_address: 'sam123@outlook.com',
+      password: '123password',
+
+    }
+      return request(app)
+      .post('/api/users')
+      .send(testUser)
+      .expect(201)
+      .then(({body}) => {
+        
+          body.forEach((obj) => {
+              expect(obj).toHaveProperty("username", expect.any(String));
+              expect(obj).toHaveProperty("genre_scores", expect.any(String));
+              expect(obj).toHaveProperty("user_id", expect.any(Number));
+              expect(obj).toHaveProperty("genre_pref", expect.any(String)); 
+              expect(obj).toHaveProperty("actor_pref", expect.any(String));
+              expect(obj).toHaveProperty("actor_scores", expect.any(String)); 
+              expect(obj).toHaveProperty("director_pref", expect.any(String));
+              expect(obj).toHaveProperty("director_scores", expect.any(String)); 
+              expect(obj).toHaveProperty("liked_movies", expect.any(String));
+              expect(obj).toHaveProperty("disliked_movies", expect.any(String)); 
+              expect(obj).toHaveProperty("watched_recently", expect.any(String));
+            });
+      })
+  })
+})
+
+describe('Patch : User', () => {
+  test('Returns Correct Objects', () => {
+    const testPref = {
+      genre_scores : {'romance' : 5, 'comedy' : 5, 'horror' : 5}, 
+      genre_pref : { pref : ['romance', 'comedy', 'horror']}, 
+      actor_pref : { pref : ['Brad Pitt', 'Idris Elba']},  
+      actor_scores : {'Brad Pitt' : 5, 'Idris Elba' : 5},  
+      director_pref : { pref : ['Christopher Nolan']}, 
+      director_scores : {'Christopher Nolan' : 5},
+      liked_movies : {liked : []}, 
+      disliked_movies : { disliked : []},
+      watched_recently : { history : []}
+    }
+
+    const loggedInUser = 'sam123'
+      return request(app)
+      .patch(`/api/users/${loggedInUser}`)
+      .send(testPref)
+      .expect(201)
+      .then(({body}) => {
+        
+          body.forEach((obj) => {
+              expect(obj).toHaveProperty("username", expect.any(String));
+              expect(obj).toHaveProperty("genre_scores", expect.any(String));
+              expect(obj).toHaveProperty("user_id", expect.any(Number));
+              expect(obj).toHaveProperty("genre_pref", expect.any(String)); 
+              expect(obj).toHaveProperty("actor_pref", expect.any(String));
+              expect(obj).toHaveProperty("actor_scores", expect.any(String)); 
+              expect(obj).toHaveProperty("director_pref", expect.any(String));
+              expect(obj).toHaveProperty("director_scores", expect.any(String)); 
+              expect(obj).toHaveProperty("liked_movies", expect.any(String));
+              expect(obj).toHaveProperty("disliked_movies", expect.any(String)); 
+              expect(obj).toHaveProperty("watched_recently", expect.any(String));
+            });
+      })
+  })
+})
 
 describe('Get : Movies', () => {
     test('Returns Correct Objects', () => {
@@ -106,6 +175,39 @@ describe('Get : Movies', () => {
         })
     })
 })
+
+describe('Get : Genres', () => {
+  test('Returns movie Genres', () => {
+    return request(app)
+    .get('/api/movies/genres')
+    .expect(200)
+    .then(({body}) => {
+      expect(typeof body).toEqual('object')
+    })
+  })
+}) 
+
+describe('Get : Directors', () => {
+  test('Returns movie Directors', () => {
+    return request(app)
+    .get('/api/movies/directors')
+    .expect(200)
+    .then(({body}) => {
+      expect(typeof body).toEqual('object')
+    })
+  })
+}) 
+
+describe('Get : Actors', () => {
+  test('Returns movie Actors', () => {
+    return request(app)
+    .get('/api/movies/actors')
+    .expect(200)
+    .then(({body}) => {
+      expect(typeof body).toEqual('object')
+    })
+  })
+}) 
 
 describe('Get : Recs', () => {
     test('Returns Correct Object', () => {
@@ -145,3 +247,14 @@ describe('Get : Recs', () => {
     //     })
     //   })
 })
+
+describe('Get : EndPoints', () => {
+  test.only('Returns api endpoints', () => {
+    return request(app)
+    .get('/api')
+    .expect(200)
+    .then(({body}) => {
+      expect(typeof body).toEqual('object')
+    })
+  })
+}) 

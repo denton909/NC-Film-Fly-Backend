@@ -1,0 +1,80 @@
+[
+    {
+        "GET USERS" : "/api/users",
+        "Response" : "All current User Objects",
+        "example":  {
+            "name": "charlie",
+            "username" : "charlie123",
+            "email_address": "charlie123@outlook.com",
+            "password": "password123",
+            "genre_scores" : "{'action' : 5, 'comedy' : 5, 'horror' : 5}", 
+            "genre_pref" : "{ pref : ['action', 'comedy', 'horror']}", 
+            "actor_pref" : "{ pref : ['Brad Pitt', 'Idris Elba']}",  
+            "actor_scores" : "{'Brad Pitt' : 5, 'Idris Elba' : 5}",  
+            "director_pref" : "{ pref : ['Christopher Nolan']}", 
+            "director_scores" : "{'Christopher Nolan' : 5}",
+            "liked_movie" : "{liked : []}", 
+            "disliked_movies" : "{ disliked : []}",
+            "watched_recently" : "{ history : []}"
+        }
+        
+    },
+    {
+        "GET USER (by username)" : "/api/users/:username",
+        "Response" : "All columns for a specific user"
+    },
+
+    {
+        "GET MOVIES" : "/api/movies",
+        "Response" : "All 5000 movies with all columns"
+    },
+    {
+        "GET DIRECTORS" : "/api/movies/directors",
+        "Response" : "Top 50 directors"
+    },
+    {
+        "GET ACTORS" : "/api/movies/actors",
+        "Response" : "Top 50 actors"
+    },
+    {
+        "GET GENRES" : "/api/movies/genres",
+        "Response" : "All Genres available"
+    },
+    {
+        "POST USER" : "/api/users",
+        "Request Body Format" : {
+            "name" : "examplename",
+            "username" : "exampleusername",
+            "email_address" : "email.com",
+            "password" : "password123"
+        },
+        "Response" : "New User Object with empty preferences"
+    },
+    {
+         "PATCH USER" : "/api/users/:username",
+        "Request Body Format" : {
+            "genre_scores" : "{'romance' : 5, 'comedy' : 5, 'horror' : 5}", 
+            "genre_pref" : "{ pref : ['romance', 'comedy', 'horror']}", 
+            "actor_pref" : "{ pref : ['Brad Pitt', 'Idris Elba']}",  
+            "actor_scores" : "{'Brad Pitt' : 5, 'Idris Elba' : 5}",  
+            "director_pref" : "{ pref : ['Christopher Nolan']}", 
+            "director_scores" : "{'Christopher Nolan' : 5}",
+            "liked_movies" : "{liked : []}", 
+            "disliked_movies" : "{ disliked : []}",
+            "watched_recently" : "{ history : []}"
+        },
+        "Tip" : "Username URL param is added to patch method",
+        "Response" : "New User Object with empty preferences"
+    }
+
+  
+]
+
+
+
+
+
+
+
+
+

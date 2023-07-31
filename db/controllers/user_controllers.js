@@ -1,5 +1,5 @@
 const db = require('../connection')
-const { retrieveUser } = require('../models/user_models')
+const { retrieveUser, createUser, updateUser } = require('../models/user_models')
 
 
 
@@ -24,4 +24,22 @@ function getUser (req, res, next){
     .catch(next)
 }
 
-module.exports = { getUsers, getUser }
+function postUsers (req, res, next) {
+    const input = req.body
+    createUser(input).then((response)=>{
+        return res.status(201).send(response)
+    })
+    
+}
+
+function patchUsers (req, res, next) {
+    const input = req.body
+    const user = req.params.username
+    updateUser(input, user).then((response)=> {
+        return res.status(201).send(response)
+
+    })
+    
+}
+
+module.exports = { getUsers, getUser, postUsers, patchUsers }

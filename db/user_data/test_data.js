@@ -1,7 +1,10 @@
 const users = () => {
     return [
         {
-        username : 'charlie', 
+        name: 'charlie',
+        username : 'charlie123',
+        email_address: 'charlie123@outlook.com',
+        password: 'password123',
         genre_scores : {'action' : 5, 'comedy' : 5, 'horror' : 5}, 
         genre_pref : { pref : ['action', 'comedy', 'horror']}, 
         actor_pref : { pref : ['Brad Pitt', 'Idris Elba']},  
@@ -13,7 +16,10 @@ const users = () => {
         watched_recently : { history : []}
     },
         {
-            username : 'phil', 
+            name: 'phil',
+            username : 'phil1234',
+            email_address: 'phil1234@outlook.com',
+            password: 'password1234',
             genre_scores : {'action' : 5, 'thriller' : 5, 'crime' : 5}, 
             genre_pref : { pref : ['action', 'thriller', 'crime']}, 
             actor_pref : { pref : ['Brad Pitt', 'Idris Elba', 'Denzel Washington']},  
