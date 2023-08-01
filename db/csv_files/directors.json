@@ -1,0 +1,252 @@
+[
+    {
+      "director_id": 2620,
+      "name": "Steven Spielberg",
+      "number_of_films": 27
+    },
+    {
+      "director_id": 43,
+      "name": "Steven Spielberg",
+      "number_of_films": 27
+    },
+    {
+      "director_id": 2923,
+      "name": "Woody Allen",
+      "number_of_films": 22
+    },
+    {
+      "director_id": 346,
+      "name": "Woody Allen",
+      "number_of_films": 22
+    },
+    {
+      "director_id": 57,
+      "name": "Martin Scorsese",
+      "number_of_films": 21
+    },
+    {
+      "director_id": 2634,
+      "name": "Martin Scorsese",
+      "number_of_films": 21
+    },
+    {
+      "director_id": 2958,
+      "name": "Clint Eastwood",
+      "number_of_films": 20
+    },
+    {
+      "director_id": 381,
+      "name": "Clint Eastwood",
+      "number_of_films": 20
+    },
+    {
+      "director_id": 2967,
+      "name": "Robert Rodriguez",
+      "number_of_films": 17
+    },
+    {
+      "director_id": 390,
+      "name": "Robert Rodriguez",
+      "number_of_films": 17
+    },
+    {
+      "director_id": 21,
+      "name": "Ridley Scott",
+      "number_of_films": 16
+    },
+    {
+      "director_id": 3081,
+      "name": "Spike Lee",
+      "number_of_films": 16
+    },
+    {
+      "director_id": 2598,
+      "name": "Ridley Scott",
+      "number_of_films": 16
+    },
+    {
+      "director_id": 504,
+      "name": "Spike Lee",
+      "number_of_films": 16
+    },
+    {
+      "director_id": 2746,
+      "name": "Renny Harlin",
+      "number_of_films": 15
+    },
+    {
+      "director_id": 169,
+      "name": "Renny Harlin",
+      "number_of_films": 15
+    },
+    {
+      "director_id": 176,
+      "name": "Steven Soderbergh",
+      "number_of_films": 15
+    },
+    {
+      "director_id": 2753,
+      "name": "Steven Soderbergh",
+      "number_of_films": 15
+    },
+    {
+      "director_id": 28,
+      "name": "Tim Burton",
+      "number_of_films": 14
+    },
+    {
+      "director_id": 92,
+      "name": "Oliver Stone",
+      "number_of_films": 14
+    },
+    {
+      "director_id": 2605,
+      "name": "Tim Burton",
+      "number_of_films": 14
+    },
+    {
+      "director_id": 2669,
+      "name": "Oliver Stone",
+      "number_of_films": 14
+    },
+    {
+      "director_id": 2678,
+      "name": "Ron Howard",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 327,
+      "name": "Barry Levinson",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 101,
+      "name": "Ron Howard",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 2730,
+      "name": "Joel Schumacher",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 51,
+      "name": "Robert Zemeckis",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 2904,
+      "name": "Barry Levinson",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 2628,
+      "name": "Robert Zemeckis",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 153,
+      "name": "Joel Schumacher",
+      "number_of_films": 13
+    },
+    {
+      "director_id": 2596,
+      "name": "Michael Bay",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 2816,
+      "name": "Peter Farrelly",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 239,
+      "name": "Peter Farrelly",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 3012,
+      "name": "Joel Coen",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 3061,
+      "name": "Francis Ford Coppola",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 234,
+      "name": "Brian De Palma",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 689,
+      "name": "Kevin Smith",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 2768,
+      "name": "Tony Scott",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 191,
+      "name": "Tony Scott",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 19,
+      "name": "Michael Bay",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 484,
+      "name": "Francis Ford Coppola",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 2811,
+      "name": "Brian De Palma",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 435,
+      "name": "Joel Coen",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 3266,
+      "name": "Kevin Smith",
+      "number_of_films": 12
+    },
+    {
+      "director_id": 2672,
+      "name": "Shawn Levy",
+      "number_of_films": 11
+    },
+    {
+      "director_id": 2815,
+      "name": "Bobby Farrelly",
+      "number_of_films": 11
+    },
+    {
+      "director_id": 851,
+      "name": "Richard Linklater",
+      "number_of_films": 11
+    },
+    {
+      "director_id": 2583,
+      "name": "Sam Raimi",
+      "number_of_films": 11
+    },
+    {
+      "director_id": 6,
+      "name": "Sam Raimi",
+      "number_of_films": 11
+    },
+    {
+      "director_id": 238,
+      "name": "Bobby Farrelly",
+      "number_of_films": 11
+    }
+  ]

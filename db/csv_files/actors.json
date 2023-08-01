@@ -1,0 +1,202 @@
+[
+    {
+      "name": "Steven Spielberg",
+      "number_of_films": 27
+    },
+    {
+      "name": "Woody Allen",
+      "number_of_films": 22
+    },
+    {
+      "name": "Martin Scorsese",
+      "number_of_films": 21
+    },
+    {
+      "name": "Clint Eastwood",
+      "number_of_films": 20
+    },
+    {
+      "name": "Robert Rodriguez",
+      "number_of_films": 17
+    },
+    {
+      "name": "Spike Lee",
+      "number_of_films": 16
+    },
+    {
+      "name": "Ridley Scott",
+      "number_of_films": 16
+    },
+    {
+      "name": "Renny Harlin",
+      "number_of_films": 15
+    },
+    {
+      "name": "Steven Soderbergh",
+      "number_of_films": 15
+    },
+    {
+      "name": "Oliver Stone",
+      "number_of_films": 14
+    },
+    {
+      "name": "Tim Burton",
+      "number_of_films": 14
+    },
+    {
+      "name": "Joel Schumacher",
+      "number_of_films": 13
+    },
+    {
+      "name": "Barry Levinson",
+      "number_of_films": 13
+    },
+    {
+      "name": "Ron Howard",
+      "number_of_films": 13
+    },
+    {
+      "name": "Robert Zemeckis",
+      "number_of_films": 13
+    },
+    {
+      "name": "Michael Bay",
+      "number_of_films": 12
+    },
+    {
+      "name": "Brian De Palma",
+      "number_of_films": 12
+    },
+    {
+      "name": "Peter Farrelly",
+      "number_of_films": 12
+    },
+    {
+      "name": "Tony Scott",
+      "number_of_films": 12
+    },
+    {
+      "name": "Joel Coen",
+      "number_of_films": 12
+    },
+    {
+      "name": "Francis Ford Coppola",
+      "number_of_films": 12
+    },
+    {
+      "name": "Kevin Smith",
+      "number_of_films": 12
+    },
+    {
+      "name": "Bobby Farrelly",
+      "number_of_films": 11
+    },
+    {
+      "name": "Shawn Levy",
+      "number_of_films": 11
+    },
+    {
+      "name": "Sam Raimi",
+      "number_of_films": 11
+    },
+    {
+      "name": "Rob Reiner",
+      "number_of_films": 11
+    },
+    {
+      "name": "Richard Linklater",
+      "number_of_films": 11
+    },
+    {
+      "name": "Chris Columbus",
+      "number_of_films": 11
+    },
+    {
+      "name": "Richard Donner",
+      "number_of_films": 11
+    },
+    {
+      "name": "Wes Craven",
+      "number_of_films": 11
+    },
+    {
+      "name": "Stephen Frears",
+      "number_of_films": 10
+    },
+    {
+      "name": "David Fincher",
+      "number_of_films": 10
+    },
+    {
+      "name": "Quentin Tarantino",
+      "number_of_films": 10
+    },
+    {
+      "name": "John McTiernan",
+      "number_of_films": 10
+    },
+    {
+      "name": "Brett Ratner",
+      "number_of_films": 10
+    },
+    {
+      "name": "John Carpenter",
+      "number_of_films": 10
+    },
+    {
+      "name": "Paul W.S. Anderson",
+      "number_of_films": 10
+    },
+    {
+      "name": "Phillip Noyce",
+      "number_of_films": 9
+    },
+    {
+      "name": "M. Night Shyamalan",
+      "number_of_films": 9
+    },
+    {
+      "name": "Dennis Dugan",
+      "number_of_films": 9
+    },
+    {
+      "name": "Rob Cohen",
+      "number_of_films": 9
+    },
+    {
+      "name": "Peter Jackson",
+      "number_of_films": 9
+    },
+    {
+      "name": "Lasse Hallström",
+      "number_of_films": 9
+    },
+    {
+      "name": "Tyler Perry",
+      "number_of_films": 9
+    },
+    {
+      "name": "David O. Russell",
+      "number_of_films": 8
+    },
+    {
+      "name": "Ethan Coen",
+      "number_of_films": 8
+    },
+    {
+      "name": "Neil Jordan",
+      "number_of_films": 8
+    },
+    {
+      "name": "Garry Marshall",
+      "number_of_films": 8
+    },
+    {
+      "name": "Stephen Herek",
+      "number_of_films": 8
+    },
+    {
+      "name": "Bryan Singer",
+      "number_of_films": 8
+    }
+  ]
