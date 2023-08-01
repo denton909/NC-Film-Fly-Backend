@@ -2,10 +2,14 @@ const db = require('./connection')
 const request = require('supertest')
 const seed = require('./seed')
 const app = require('./app')
+const movie = require('./csv_files/movies.json')
+const crew = require('./csv_files/crew.json')
+const users = require('./user_data/test_data')
 
-beforeAll(() => {
-    return seed()
-  });
+// beforeAll(() => {
+  
+//     seed()
+//   });
   
   afterAll(() => {
     db.end()
@@ -41,7 +45,7 @@ describe('Get : User', () => {
         .get('/api/users/1')
         .expect(200)
         .then(({body}) => {
-                expect(body).toHaveProperty("username", ('charlie'));
+                expect(body).toHaveProperty("username", ('charlie123'));
                 expect(body).toHaveProperty("genre_scores", expect.any(String));
                 expect(body).toHaveProperty("user_id", expect.any(Number));
                 expect(body).toHaveProperty("genre_pref", expect.any(String)); 
@@ -215,7 +219,7 @@ describe('Get : Recs', () => {
         .get('/api/users/1/recommendations')
         .expect(200)
         .then(({body}) => {
-                expect(body).toHaveProperty("username", ('charlie'));
+                expect(body).toHaveProperty("username", ('charlie123'));
                 expect(body).toHaveProperty("genre_scores", expect.any(String));
                 expect(body).toHaveProperty("user_id", expect.any(Number));
                 expect(body).toHaveProperty("genre_pref", expect.any(String)); 
@@ -249,7 +253,7 @@ describe('Get : Recs', () => {
 })
 
 describe('Get : EndPoints', () => {
-  test.only('Returns api endpoints', () => {
+  test('Returns api endpoints', () => {
     return request(app)
     .get('/api')
     .expect(200)
