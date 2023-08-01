@@ -1,202 +1,402 @@
 [
-    {
-      "name": "Steven Spielberg",
-      "number_of_films": 27
-    },
-    {
-      "name": "Woody Allen",
-      "number_of_films": 22
-    },
-    {
-      "name": "Martin Scorsese",
-      "number_of_films": 21
-    },
-    {
-      "name": "Clint Eastwood",
-      "number_of_films": 20
-    },
-    {
-      "name": "Robert Rodriguez",
-      "number_of_films": 17
-    },
-    {
-      "name": "Spike Lee",
-      "number_of_films": 16
-    },
-    {
-      "name": "Ridley Scott",
-      "number_of_films": 16
-    },
-    {
-      "name": "Renny Harlin",
-      "number_of_films": 15
-    },
-    {
-      "name": "Steven Soderbergh",
-      "number_of_films": 15
-    },
-    {
-      "name": "Oliver Stone",
-      "number_of_films": 14
-    },
-    {
-      "name": "Tim Burton",
-      "number_of_films": 14
-    },
-    {
-      "name": "Joel Schumacher",
-      "number_of_films": 13
-    },
-    {
-      "name": "Barry Levinson",
-      "number_of_films": 13
-    },
-    {
-      "name": "Ron Howard",
-      "number_of_films": 13
-    },
-    {
-      "name": "Robert Zemeckis",
-      "number_of_films": 13
-    },
-    {
-      "name": "Michael Bay",
-      "number_of_films": 12
-    },
-    {
-      "name": "Brian De Palma",
-      "number_of_films": 12
-    },
-    {
-      "name": "Peter Farrelly",
-      "number_of_films": 12
-    },
-    {
-      "name": "Tony Scott",
-      "number_of_films": 12
-    },
-    {
-      "name": "Joel Coen",
-      "number_of_films": 12
-    },
-    {
-      "name": "Francis Ford Coppola",
-      "number_of_films": 12
-    },
-    {
-      "name": "Kevin Smith",
-      "number_of_films": 12
-    },
-    {
-      "name": "Bobby Farrelly",
-      "number_of_films": 11
-    },
-    {
-      "name": "Shawn Levy",
-      "number_of_films": 11
-    },
-    {
-      "name": "Sam Raimi",
-      "number_of_films": 11
-    },
-    {
-      "name": "Rob Reiner",
-      "number_of_films": 11
-    },
-    {
-      "name": "Richard Linklater",
-      "number_of_films": 11
-    },
-    {
-      "name": "Chris Columbus",
-      "number_of_films": 11
-    },
-    {
-      "name": "Richard Donner",
-      "number_of_films": 11
-    },
-    {
-      "name": "Wes Craven",
-      "number_of_films": 11
-    },
-    {
-      "name": "Stephen Frears",
-      "number_of_films": 10
-    },
-    {
-      "name": "David Fincher",
-      "number_of_films": 10
-    },
-    {
-      "name": "Quentin Tarantino",
-      "number_of_films": 10
-    },
-    {
-      "name": "John McTiernan",
-      "number_of_films": 10
-    },
-    {
-      "name": "Brett Ratner",
-      "number_of_films": 10
-    },
-    {
-      "name": "John Carpenter",
-      "number_of_films": 10
-    },
-    {
-      "name": "Paul W.S. Anderson",
-      "number_of_films": 10
-    },
-    {
-      "name": "Phillip Noyce",
-      "number_of_films": 9
-    },
-    {
-      "name": "M. Night Shyamalan",
-      "number_of_films": 9
-    },
-    {
-      "name": "Dennis Dugan",
-      "number_of_films": 9
-    },
-    {
-      "name": "Rob Cohen",
-      "number_of_films": 9
-    },
-    {
-      "name": "Peter Jackson",
-      "number_of_films": 9
-    },
-    {
-      "name": "Lasse Hallström",
-      "number_of_films": 9
-    },
-    {
-      "name": "Tyler Perry",
-      "number_of_films": 9
-    },
-    {
-      "name": "David O. Russell",
-      "number_of_films": 8
-    },
-    {
-      "name": "Ethan Coen",
-      "number_of_films": 8
-    },
-    {
-      "name": "Neil Jordan",
-      "number_of_films": 8
-    },
-    {
-      "name": "Garry Marshall",
-      "number_of_films": 8
-    },
-    {
-      "name": "Stephen Herek",
-      "number_of_films": 8
-    },
-    {
-      "name": "Bryan Singer",
-      "number_of_films": 8
-    }
-  ]
+  {
+    "name": "Robert De Niro",
+    "number_of_films": 110
+  },
+  {
+    "name": "Samuel L. Jackson",
+    "number_of_films": 96
+  },
+  {
+    "name": "Bruce Willis",
+    "number_of_films": 84
+  },
+  {
+    "name": "Matt Damon",
+    "number_of_films": 74
+  },
+  {
+    "name": "Morgan Freeman",
+    "number_of_films": 74
+  },
+  {
+    "name": "Nicolas Cage",
+    "number_of_films": 72
+  },
+  {
+    "name": "Johnny Depp",
+    "number_of_films": 68
+  },
+  {
+    "name": "Steve Buscemi",
+    "number_of_films": 66
+  },
+  {
+    "name": "Brad Pitt",
+    "number_of_films": 66
+  },
+  {
+    "name": "Alec Baldwin",
+    "number_of_films": 64
+  },
+  {
+    "name": "Owen Wilson",
+    "number_of_films": 64
+  },
+  {
+    "name": "Julia Roberts",
+    "number_of_films": 62
+  },
+  {
+    "name": "Mark Wahlberg",
+    "number_of_films": 62
+  },
+  {
+    "name": "George Clooney",
+    "number_of_films": 60
+  },
+  {
+    "name": "Denzel Washington",
+    "number_of_films": 60
+  },
+  {
+    "name": "Nicole Kidman",
+    "number_of_films": 58
+  },
+  {
+    "name": "Liam Neeson",
+    "number_of_films": 58
+  },
+  {
+    "name": "Tom Hanks",
+    "number_of_films": 58
+  },
+  {
+    "name": "Cameron Diaz",
+    "number_of_films": 58
+  },
+  {
+    "name": "Ben Stiller",
+    "number_of_films": 58
+  },
+  {
+    "name": "Tom Cruise",
+    "number_of_films": 58
+  },
+  {
+    "name": "Robin Williams",
+    "number_of_films": 58
+  },
+  {
+    "name": "Willem Dafoe",
+    "number_of_films": 56
+  },
+  {
+    "name": "Will Ferrell",
+    "number_of_films": 56
+  },
+  {
+    "name": "Pierce Brosnan",
+    "number_of_films": 56
+  },
+  {
+    "name": "Harrison Ford",
+    "number_of_films": 56
+  },
+  {
+    "name": "Susan Sarandon",
+    "number_of_films": 56
+  },
+  {
+    "name": "Woody Harrelson",
+    "number_of_films": 56
+  },
+  {
+    "name": "Eddie Murphy",
+    "number_of_films": 56
+  },
+  {
+    "name": "Julianne Moore",
+    "number_of_films": 56
+  },
+  {
+    "name": "John Goodman",
+    "number_of_films": 56
+  },
+  {
+    "name": "John Travolta",
+    "number_of_films": 56
+  },
+  {
+    "name": "Anthony Hopkins",
+    "number_of_films": 56
+  },
+  {
+    "name": "Antonio Banderas",
+    "number_of_films": 54
+  },
+  {
+    "name": "Sylvester Stallone",
+    "number_of_films": 54
+  },
+  {
+    "name": "Sandra Bullock",
+    "number_of_films": 54
+  },
+  {
+    "name": "Arnold Schwarzenegger",
+    "number_of_films": 54
+  },
+  {
+    "name": "Ewan McGregor",
+    "number_of_films": 54
+  },
+  {
+    "name": "Jim Broadbent",
+    "number_of_films": 52
+  },
+  {
+    "name": "Ed Harris",
+    "number_of_films": 52
+  },
+  {
+    "name": "Adam Sandler",
+    "number_of_films": 52
+  },
+  {
+    "name": "Scarlett Johansson",
+    "number_of_films": 52
+  },
+  {
+    "name": "Philip Seymour Hoffman",
+    "number_of_films": 52
+  },
+  {
+    "name": "Gary Oldman",
+    "number_of_films": 52
+  },
+  {
+    "name": "Matthew McConaughey",
+    "number_of_films": 52
+  },
+  {
+    "name": "Keanu Reeves",
+    "number_of_films": 52
+  },
+  {
+    "name": "Sean Connery",
+    "number_of_films": 52
+  },
+  {
+    "name": "Bill Murray",
+    "number_of_films": 52
+  },
+  {
+    "name": "Meryl Streep",
+    "number_of_films": 52
+  },
+  {
+    "name": "Christopher Plummer",
+    "number_of_films": 52
+  },
+  {
+    "name": "Jim Carrey",
+    "number_of_films": 50
+  },
+  {
+    "name": "Drew Barrymore",
+    "number_of_films": 50
+  },
+  {
+    "name": "John Cusack",
+    "number_of_films": 50
+  },
+  {
+    "name": "Gerard Butler",
+    "number_of_films": 50
+  },
+  {
+    "name": "Angelina Jolie",
+    "number_of_films": 50
+  },
+  {
+    "name": "Cate Blanchett",
+    "number_of_films": 50
+  },
+  {
+    "name": "Robert Downey Jr.",
+    "number_of_films": 50
+  },
+  {
+    "name": "Ralph Fiennes",
+    "number_of_films": 50
+  },
+  {
+    "name": "Robert Duvall",
+    "number_of_films": 50
+  },
+  {
+    "name": "Kevin Costner",
+    "number_of_films": 50
+  },
+  {
+    "name": "Michael Caine",
+    "number_of_films": 48
+  },
+  {
+    "name": "Jason Statham",
+    "number_of_films": 48
+  },
+  {
+    "name": "Paul Rudd",
+    "number_of_films": 48
+  },
+  {
+    "name": "Kate Winslet",
+    "number_of_films": 48
+  },
+  {
+    "name": "Forest Whitaker",
+    "number_of_films": 48
+  },
+  {
+    "name": "John C. Reilly",
+    "number_of_films": 48
+  },
+  {
+    "name": "Charlize Theron",
+    "number_of_films": 48
+  },
+  {
+    "name": "Dustin Hoffman",
+    "number_of_films": 48
+  },
+  {
+    "name": "Ben Kingsley",
+    "number_of_films": 48
+  },
+  {
+    "name": "James Franco",
+    "number_of_films": 48
+  },
+  {
+    "name": "John Hurt",
+    "number_of_films": 48
+  },
+  {
+    "name": "Christian Bale",
+    "number_of_films": 48
+  },
+  {
+    "name": "Jack Black",
+    "number_of_films": 48
+  },
+  {
+    "name": "Mark Ruffalo",
+    "number_of_films": 48
+  },
+  {
+    "name": "Russell Crowe",
+    "number_of_films": 48
+  },
+  {
+    "name": "Catherine Keener",
+    "number_of_films": 48
+  },
+  {
+    "name": "Hugh Jackman",
+    "number_of_films": 48
+  },
+  {
+    "name": "Ben Affleck",
+    "number_of_films": 48
+  },
+  {
+    "name": "Anne Hathaway",
+    "number_of_films": 46
+  },
+  {
+    "name": "Justin Long",
+    "number_of_films": 46
+  },
+  {
+    "name": "Kevin Bacon",
+    "number_of_films": 46
+  },
+  {
+    "name": "Jude Law",
+    "number_of_films": 46
+  },
+  {
+    "name": "Sigourney Weaver",
+    "number_of_films": 46
+  },
+  {
+    "name": "Brendan Gleeson",
+    "number_of_films": 46
+  },
+  {
+    "name": "John Malkovich",
+    "number_of_films": 46
+  },
+  {
+    "name": "Amy Adams",
+    "number_of_films": 46
+  },
+  {
+    "name": "John Leguizamo",
+    "number_of_films": 46
+  },
+  {
+    "name": "Laurence Fishburne",
+    "number_of_films": 46
+  },
+  {
+    "name": "Naomi Watts",
+    "number_of_films": 44
+  },
+  {
+    "name": "Dwayne Johnson",
+    "number_of_films": 44
+  },
+  {
+    "name": "Leonardo DiCaprio",
+    "number_of_films": 44
+  },
+  {
+    "name": "Will Smith",
+    "number_of_films": 44
+  },
+  {
+    "name": "Kirsten Dunst",
+    "number_of_films": 44
+  },
+  {
+    "name": "Gene Hackman",
+    "number_of_films": 44
+  },
+  {
+    "name": "Jeff Bridges",
+    "number_of_films": 44
+  },
+  {
+    "name": "Danny DeVito",
+    "number_of_films": 44
+  },
+  {
+    "name": "Mel Gibson",
+    "number_of_films": 44
+  },
+  {
+    "name": "Queen Latifah",
+    "number_of_films": 44
+  },
+  {
+    "name": "Tom Wilkinson",
+    "number_of_films": 44
+  },
+  {
+    "name": "Christopher Walken",
+    "number_of_films": 44
+  }
+]
