@@ -20,8 +20,7 @@ function retrieveGenres (){
                 
             })
         })
-
-        return Object.keys(result)
+        return {genres: Object.keys(result)}
     })
 
 }
@@ -30,10 +29,11 @@ function retrieveDirectors (){
         return db.query('SELECT name FROM directors ORDER BY number_of_films DESC')
  
     .then(({rows})=>{
-
-        return rows.map((row) => {
-            return row.name
+        const directorList = []
+        rows.forEach((row) => {
+            directorList.push(row.name)
         })
+        return {directors: directorList}
     })
 
 
@@ -43,12 +43,12 @@ function retrieveActors (){
 
     return db.query('SELECT name FROM actors ORDER BY number_of_films DESC')
     .then(({rows})=>{
-    
-        return rows.map((row) => {
-            return row.name
+        const actorList = []
+        rows.forEach((row) => {
+            actorList.push(row.name)
         })
+        return {actors: actorList}
     })
-
 
 }
 
