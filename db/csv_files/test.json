@@ -1,0 +1,25 @@
+[{
+  "name": "Movie1",
+  "genres": [
+    {"name": "Action"}, 
+    {"name": "Comedy"},
+    {"name": "Thriller"}
+  ]
+}, 
+{
+  "name": "Movie2",
+  "genres": [
+    {"name": "Romance"}, 
+    {"name": "Drama"},
+    {"name": "Crime"}
+  ]
+}, 
+{
+  "name": "MovieWithAVengance",
+  "genres": [
+    {"name": "Comedy"}, 
+    {"name": "Musical"},
+    {"name": "Western"}
+  ]
+}
+]

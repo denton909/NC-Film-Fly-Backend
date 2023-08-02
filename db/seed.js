@@ -8,6 +8,7 @@ const users = require('./user_data/test_data')
 const directors = require('./csv_files/directors.json')
 
 const actors = require('./csv_files/actors.json')
+const test = require('./csv_files/test.json')
 
 
 
@@ -28,12 +29,17 @@ const seed = () => {
         
     })
     .then(()=> {
+
+        return db.query('DROP TABLE IF EXISTS test_table')
+        
+    })
+    .then(()=> {
         console.log('in create')
         return db.query('CREATE TABLE movies (budget INT, genres JSONB, homepage TEXT, id INT, keywords JSONB, original_language TEXT, original_title TEXT, overview TEXT, popularity VARCHAR, production_companies JSONB, production_countries JSONB, release_date TEXT, revenue BIGINT, runtime INT, spoken_languages JSONB, status TEXT, tagline TEXT, title TEXT, vote_average FLOAT, vote_count INT)')
     })
     .then(()=>{
 
-        return db.query('CREATE TABLE users (user_id SERIAL PRIMARY KEY, name VARCHAR(30), username VARCHAR(30) NOT NULL, email_address VARCHAR(50) NOT NULL, password VARCHAR(30) NOT NULL, genre_scores TEXT, genre_pref TEXT, actor_pref TEXT, actor_scores TEXT, director_pref TEXT, director_scores TEXT, liked_movies TEXT, disliked_movies TEXT, watched_recently TEXT)')
+        return db.query('CREATE TABLE users (user_id SERIAL PRIMARY KEY, name VARCHAR(30), username VARCHAR(30) NOT NULL, email_address VARCHAR(50) NOT NULL, password VARCHAR(30) NOT NULL, genre_scores JSONB, genre_pref JSONB, actor_pref JSONB, actor_scores JSONB, director_pref JSONB, director_scores JSONB, liked_movies JSONB, disliked_movies JSONB, watched_recently JSONB)')
     })
     .then(()=> {
         
@@ -44,6 +50,9 @@ const seed = () => {
     })
     .then(()=> {
         return db.query('CREATE TABLE actors (actor_id SERIAL PRIMARY KEY, name TEXT, number_of_films INT)')
+    })
+    .then(()=> {
+        return db.query('CREATE TABLE test_table (id SERIAL PRIMARY KEY, name TEXT, genres JSONB)')
     })
     .then(()=> {
 
@@ -80,6 +89,12 @@ const seed = () => {
     .then(() => {
         return db.query(format('INSERT INTO actors (name, number_of_films) VALUES %L;', actors.map((actor) => {
             return [actor.name, actor.number_of_films]
+        })))
+    })
+    .then(() => {
+        console.log(test)
+        return db.query(format('INSERT INTO test_table (name, genres) VALUES %L;', test.map((testArticle) => {
+            return [testArticle.name, JSON.stringify(testArticle.genres)]
         })))
     })
 

@@ -1,5 +1,5 @@
 const db = require('../connection')
-const {retrieveRecs} = require('../models/algorithm')
+const { retrieveRecs } = require('../algorithm/algorithm')
 const { retrieveGenres, retrieveDirectors, retrieveActors } = require('../models/movies_models')
 
 function getMovies(req, res, next) {

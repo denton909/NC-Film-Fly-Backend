@@ -1,0 +1,43 @@
+function increaseScore(num) {
+    if (num < 20) {
+        return num + 25
+    } else if (num < 40) {
+        return num + 20
+    } else if (num < 60) {
+        return num + 15
+    } else if (num < 80) {
+        return num + 10
+    } else if (num < 100) {
+        return num + 5
+    }
+}
+
+// function increaseScore(num) {
+//     const increase = increaseScoreMaths(num)
+//     if (increase > 100) {
+//         return 100
+//     } else {return increase}
+// }
+
+function decreaseScore(num) {
+  if (num > 80) {
+      return num - 25
+  } else if (num > 60) {
+      return num - 20
+  } else if (num > 40) {
+      return num - 15
+  } else if (num > 20) {
+      return num - 10
+  } else if (num > 0) {
+      return num - 5
+  }
+}
+
+// function decreaseScore(num) {
+//   const increase = increaseScoreMaths(num)
+//   if (increase < 0) {
+//       return 0
+//   } else {return increase}
+// }
+
+module.exports = {increaseScore, decreaseScore}

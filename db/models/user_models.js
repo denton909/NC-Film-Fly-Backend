@@ -44,9 +44,22 @@ function createUser(user) {
 }
 
 function updateUser(pref, user) {
+
+    pref.genre_pref.pref.forEach(genre => {
+        pref.genre_scores[genre] = 75
+    })
+    pref.actor_pref.pref.forEach(actor => {
+        pref.actor_scores[actor] = 75
+    })
+    pref.director_pref.pref.forEach(director => {
+        pref.director_scores[director] = 75
+    })
+
+
     const values = [pref.genre_scores, pref.genre_pref, pref.actor_pref, pref.actor_scores, pref.director_pref, pref.director_scores, pref.liked_movies, pref.disliked_movies, pref.watched_recently, user]
     return db.query('UPDATE users SET genre_scores = $1, genre_pref = $2, actor_pref = $3, actor_scores = $4, director_pref = $5, director_scores = $6, liked_movies = $7, disliked_movies = $8, watched_recently = $9 WHERE username = $10 RETURNING *;', values)
     .then(({rows})=> {
+        console.log(rows)
         return rows
 
     })

@@ -113,7 +113,7 @@ describe('Post : User', () => {
 describe('Patch : User', () => {
   test('Returns Correct Objects', () => {
     const testPref = {
-      genre_scores : {'romance' : 5, 'comedy' : 5, 'horror' : 5}, 
+      genre_scores : {'romance': 5, 'comedy': 5, 'horror': 5}, 
       genre_pref : { pref : ['romance', 'comedy', 'horror']}, 
       actor_pref : { pref : ['Brad Pitt', 'Idris Elba']},  
       actor_scores : {'Brad Pitt' : 5, 'Idris Elba' : 5},  
@@ -145,6 +145,29 @@ describe('Patch : User', () => {
               expect(obj).toHaveProperty("watched_recently", expect.any(String));
             });
       })
+    })
+  })
+  test('gets created user profile and populates scores correctly', () => {
+    const testPref = {
+      genre_scores : {}, 
+      genre_pref : { pref : ['romance', 'comedy', 'horror']}, 
+      actor_pref : { pref : ['Brad Pitt', 'Idris Elba']},  
+      actor_scores : {},  
+      director_pref : { pref : ['Christopher Nolan']}, 
+      director_scores : {},
+      liked_movies : {liked : []}, 
+      disliked_movies : { disliked : []},
+      watched_recently : { history : []}
+    }
+    const loggedInUser = 'charlie123'
+      return request(app)
+      .patch(`/api/users/${loggedInUser}`)
+      .send(testPref)
+      .expect(201)
+      .then(({body}) => {
+        expect(body[0].genre_scores).toEqual({'romance': 75, 'comedy': 75, 'horror': 75})
+        expect(body[0].actor_scores).toEqual({'Brad Pitt': 75, 'Idris Elba': 75})
+        expect(body[0].director_scores).toEqual({'Christopher Nolan': 75})
   })
 })
 
@@ -220,18 +243,27 @@ describe('Get : Recs', () => {
         .expect(200)
         .then(({body}) => {
                 expect(body).toHaveProperty("username", ('charlie123'));
-                expect(body).toHaveProperty("genre_scores", expect.any(String));
+                expect(body).toHaveProperty("genre_scores", expect.any(Object));
                 expect(body).toHaveProperty("user_id", expect.any(Number));
-                expect(body).toHaveProperty("genre_pref", expect.any(String)); 
-                expect(body).toHaveProperty("actor_pref", expect.any(String));
-                expect(body).toHaveProperty("actor_scores", expect.any(String)); 
-                expect(body).toHaveProperty("director_pref", expect.any(String));
-                expect(body).toHaveProperty("director_scores", expect.any(String)); 
-                expect(body).toHaveProperty("liked_movies", expect.any(String));
-                expect(body).toHaveProperty("disliked_movies", expect.any(String)); 
-                expect(body).toHaveProperty("watched_recently", expect.any(String));
+                expect(body).toHaveProperty("genre_pref", expect.any(Object)); 
+                expect(body).toHaveProperty("actor_pref", expect.any(Object));
+                expect(body).toHaveProperty("actor_scores", expect.any(Object)); 
+                expect(body).toHaveProperty("director_pref", expect.any(Object));
+                expect(body).toHaveProperty("director_scores", expect.any(Object)); 
+                expect(body).toHaveProperty("liked_movies", expect.any(Object));
+                expect(body).toHaveProperty("disliked_movies", expect.any(Object)); 
+                expect(body).toHaveProperty("watched_recently", expect.any(Object));
         })
     })
+    test('Returns a movie with a liked genre type when fed in a user', () => {
+      return request(app)
+        .get('/api/users/1/recommendations')
+        .expect(200)
+        .then(({body}) => {
+          expect(typeof body).toBe('object')
+        })
+    })
+
     // test('400: Incorrect url parameter input outputs a useful error message', () => {
     //     return request(app)
     //     .get("/api/users/1/recommendations")
@@ -262,3 +294,14 @@ describe('Get : EndPoints', () => {
     })
   })
 }) 
+
+describe.only('Test recs', () => {
+  test('testing JSON queries', () => {
+    return request(app)
+    .get('/api/test')
+    .expect(200)
+    .then(({body}) => {
+      expect(typeof body).toEqual('object')
+    })
+  })
+})
