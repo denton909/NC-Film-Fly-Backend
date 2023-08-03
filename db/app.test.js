@@ -258,7 +258,7 @@ describe("all tests", () => {
   })
 
   describe('Get : Genres', () => {
-    test.only('Returns movie Genres', () => {
+    test('Returns movie Genres', () => {
       return request(app)
         .get('/api/movies/genres')
         .expect(200)
@@ -317,7 +317,7 @@ describe("all tests", () => {
           expect(body).toHaveProperty("watched_recently", expect.any(Object));
         })
     })
-    test('Returns a movie with a liked genre type when fed in a user', () => {
+    test.only('Returns a movie with a liked genre type when fed in a user', () => {
       return request(app)
         .get('/api/users/1/recommendations')
         .expect(200)

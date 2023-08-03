@@ -23,32 +23,12 @@ function retrieveRecs (id){
         const queryString = stringArray.replaceAll(`"`, `'`)
 
        return db.query(`SELECT * FROM movies WHERE genres LIKE ANY (ARRAY ${queryString}) `).then(({rows}) => {
-        // console.log(rows)
-        return response
+        
+        return rows
        })
 
     
        
-    })
-    .then((userPref)=> {
-        const actorScores = userPref.actor_scores
-        const actorKeys = Object.keys(actorScores)
-        
-        const actorsArray = actorKeys.map((actor)=> {
-            const upperCase = actor.substring(0, 1).toUpperCase()
-            const LowerCase = actor.slice(1)
-            const wordWithCapitalLetter = upperCase + LowerCase
-           
-              return '%' + wordWithCapitalLetter + '%'
-            })
-            const stringArray = JSON.stringify(actorsArray)
-            const queryString = stringArray.replaceAll(`"`, `'`)
-
-            return db.query(`SELECT * FROM crew WHERE "cast" LIKE ANY (ARRAY ${queryString}) `).then(({rows}) => {
-                // console.log(rows)
-                return response
-               })
-
     })
 }
 

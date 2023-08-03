@@ -30,6 +30,11 @@ const seed = () => {
     })
     .then(()=> {
 
+        return db.query('DROP TABLE IF EXISTS recommendations')
+        
+    })
+    .then(()=> {
+
         return db.query('DROP TABLE IF EXISTS test_table')
         
     })
