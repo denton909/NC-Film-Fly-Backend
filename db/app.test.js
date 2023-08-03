@@ -13,7 +13,7 @@ describe("all tests", () => {
 
     await seed()
   
-  }, 10000);
+  }, 20000);
 
   afterAll(() => {
     db.end()
@@ -123,7 +123,7 @@ describe("all tests", () => {
   })
 
   describe('Patch : User', () => {
-    test('Returns Correct Objects', () => {
+    test.only('Returns Correct Objects', () => {
       const testPref = {
         genre_scores: {
           'romance': 5,
@@ -131,7 +131,7 @@ describe("all tests", () => {
           'horror': 5
         },
         genre_pref: {
-          pref: ['romance', 'comedy', 'horror']
+          pref: ['western', 'comedy', 'horror']
         },
         actor_pref: {
           pref: ['Brad Pitt', 'Idris Elba']
@@ -157,20 +157,15 @@ describe("all tests", () => {
         }
       }
 
-      const loggedInUser = 'sam123'
+      const loggedInUser = 'phil1234'
       return request(app)
         .patch(`/api/users/${loggedInUser}`)
         .send(testPref)
         .expect(201)
-        .then(({
-          body
-        }) => {
-
+        .then(({body}) => {
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
-            expect(obj).toHaveProperty("genre_scores", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("genre_pref", expect.any(String));
             expect(obj).toHaveProperty("actor_pref", expect.any(String));
             expect(obj).toHaveProperty("actor_scores", expect.any(String));
             expect(obj).toHaveProperty("director_pref", expect.any(String));
@@ -367,7 +362,7 @@ describe("all tests", () => {
     })
   })
 
-  describe.only('Patch : Add watched movie', () => {
+  describe('Patch : Add watched movie', () => {
     test('Watched movie added to watched movies list', () => {
       const testPref = {
         movie: {

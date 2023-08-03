@@ -14,13 +14,14 @@ function retrieveGenres (){
             genres.forEach((genre)=> {
                 if(result[genre.name] === undefined){
                     result[genre.name] = 1
+                    result.id = genre.id
                 } else {
                     result[genre.name]++
                 }
                 
             })
         })
-        return {genres: Object.keys(result)}
+        return {genres: result}
     })
 
 }

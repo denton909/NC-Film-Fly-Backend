@@ -35,7 +35,7 @@ const seed = () => {
     })
     .then(()=> {
         console.log('in create')
-        return db.query('CREATE TABLE movies (budget INT, genres JSONB, homepage TEXT, id INT, keywords JSONB, original_language TEXT, original_title TEXT, overview TEXT, popularity VARCHAR, production_companies JSONB, production_countries JSONB, release_date TEXT, revenue BIGINT, runtime INT, spoken_languages JSONB, status TEXT, tagline TEXT, title TEXT, vote_average FLOAT, vote_count INT)')
+        return db.query('CREATE TABLE movies (budget INT, genres TEXT, homepage TEXT, id INT, keywords JSONB, original_language TEXT, original_title TEXT, overview TEXT, popularity VARCHAR, production_companies JSONB, production_countries JSONB, release_date TEXT, revenue BIGINT, runtime INT, spoken_languages JSONB, status TEXT, tagline TEXT, title TEXT, vote_average FLOAT, vote_count INT)')
     })
     .then(()=>{
 
@@ -43,7 +43,7 @@ const seed = () => {
     })
     .then(()=> {
         
-        return db.query('CREATE TABLE crew (movie_id INT, title TEXT, "cast" JSONB, crew JSONB)')
+        return db.query('CREATE TABLE crew (movie_id INT, title TEXT, "cast" TEXT, crew JSONB)')
     })
     .then(()=> {
         return db.query('CREATE TABLE directors (director_id SERIAL PRIMARY KEY, name TEXT, number_of_films INT)')
@@ -92,7 +92,7 @@ const seed = () => {
         })))
     })
     .then(() => {
-        console.log(test)
+        
         return db.query(format('INSERT INTO test_table (name, genres) VALUES %L;', test.map((testArticle) => {
             return [testArticle.name, JSON.stringify(testArticle.genres)]
         })))
