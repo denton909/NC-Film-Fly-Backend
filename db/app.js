@@ -1,12 +1,12 @@
 const express = require('express')
 const fs = require('fs/promises')
-const { getUsers, getUser, postUsers, patchUsers } = require('./controllers/user_controllers')
+const { getUsers, getUser, postUsers, patchUsers, patchMovie } = require('./controllers/user_controllers')
 const { getMovies, getRecs, getGenres, getDirectors, getActors } = require('./controllers/movies_controller')
 const getEndpoints = require('./controllers/endpoints_controller')
 const { getUserTest } = require('./controllers/test_controllers')
 
-
 const app = express()
+
 app.use(express.json())
 
 app.get('/api', getEndpoints)
@@ -31,7 +31,11 @@ app.post('/api/users', postUsers)
 
 app.patch('/api/users/:username', patchUsers)
 
+app.patch('/api/users/:username/add-movie', patchMovie)
+
 app.get('/api/test', getUserTest)
+
+
 
 app.use((err, req, res, next) => {
     if (err = 'Error: 404 - Not Found'){

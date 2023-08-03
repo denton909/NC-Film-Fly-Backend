@@ -59,13 +59,23 @@ function updateUser(pref, user) {
     const values = [pref.genre_scores, pref.genre_pref, pref.actor_pref, pref.actor_scores, pref.director_pref, pref.director_scores, pref.liked_movies, pref.disliked_movies, pref.watched_recently, user]
     return db.query('UPDATE users SET genre_scores = $1, genre_pref = $2, actor_pref = $3, actor_scores = $4, director_pref = $5, director_scores = $6, liked_movies = $7, disliked_movies = $8, watched_recently = $9 WHERE username = $10 RETURNING *;', values)
     .then(({rows})=> {
-        console.log(rows)
         return rows
 
+    })
+}
+
+function updateMovie({movie}, user) {
+    return db.query(`SELECT * from users WHERE username = $1;`, [user]).then(({rows}) => {
+        rows[0].watched_recently.history.push(movie.name)
+        return rows
+    })
+    .then((rows) => {
+        const values = [rows[0].watched_recently, rows[0].username]
+        return db.query('UPDATE users SET watched_recently = $1 WHERE username = $2 RETURNING *', values)
     })
 }
 
 
 
 
-module.exports = { retrieveUser, createUser, updateUser }
+module.exports = { retrieveUser, createUser, updateUser, updateMovie }

@@ -1,5 +1,5 @@
 const db = require('../connection')
-const { retrieveUser, createUser, updateUser } = require('../models/user_models')
+const { retrieveUser, createUser, updateUser, updateMovie } = require('../models/user_models')
 
 
 
@@ -42,4 +42,13 @@ function patchUsers (req, res, next) {
     
 }
 
-module.exports = { getUsers, getUser, postUsers, patchUsers }
+function patchMovie (req, res, next) {
+    const input = req.body
+    const user = req.params.username 
+    return updateMovie(input, user).then(({rows}) => {
+        console.log(rows[0].watched_recently)
+        return res.status(201).send(rows)
+    })
+}
+
+module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie }

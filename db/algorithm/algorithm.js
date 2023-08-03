@@ -11,22 +11,25 @@ function retrieveRecs (id){
         const genreScores = response.genre_scores
         const actorScores = response.actor_scores
         const directorScores = response.director_scores
+        const genreKeys = Object.keys(genreScores)
+        // console.log(genreKeys)
+        // return db.query(`SELECT * FROM movies WHERE original_title = 'The Polar Express';`).then(({rows}) => {
+        //     console.log(rows)
+        //     return rows
+        // })
+
+        return db.query(`SELECT * FROM movies WHERE genres ->> 0 = '{"id": 14, "name": "Fantasy"}';`).then(({rows}) => {
+            console.log(rows)
+            return rows
+        })
+
+        // db.query(`SELECT * FROM movies WHERE genres ->> 0 = '{"name": "Comedy"}' OR genres ->> 1 = '{"name": "Comedy"}' ;`)
+
+
 
         // console.log(genreScores, actorScores, directorScores)
-        // get movie where --> genre something something  
-    
-
-
-
-
-
-
-
-
-
-
-
-        return response
+    }).then((response) => {
+        console.log(response)
     })
 }
 
