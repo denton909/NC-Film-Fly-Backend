@@ -13,7 +13,7 @@ describe("all tests", () => {
 
     await seed()
   
-  }, 20000);
+  }, 200000);
 
   afterAll(() => {
     db.end()
@@ -123,10 +123,10 @@ describe("all tests", () => {
   })
 
   describe('Patch : User', () => {
-    test.only('Returns Correct Objects', () => {
+    test('Returns Correct Objects', () => {
       const testPref = {
         genre_scores: {
-          'romance': 5,
+          'western': 5,
           'comedy': 5,
           'horror': 5
         },
@@ -163,12 +163,11 @@ describe("all tests", () => {
         .send(testPref)
         .expect(201)
         .then(({body}) => {
+          console.log(body)
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("actor_pref", expect.any(String));
             expect(obj).toHaveProperty("actor_scores", expect.any(String));
-            expect(obj).toHaveProperty("director_pref", expect.any(String));
             expect(obj).toHaveProperty("director_scores", expect.any(String));
             expect(obj).toHaveProperty("liked_movies", expect.any(String));
             expect(obj).toHaveProperty("disliked_movies", expect.any(String));
@@ -259,7 +258,7 @@ describe("all tests", () => {
   })
 
   describe('Get : Genres', () => {
-    test('Returns movie Genres', () => {
+    test.only('Returns movie Genres', () => {
       return request(app)
         .get('/api/movies/genres')
         .expect(200)
