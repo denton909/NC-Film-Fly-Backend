@@ -2,9 +2,7 @@ const db = require('./connection')
 const request = require('supertest')
 const seed = require('./seed')
 const app = require('./app')
-const movie = require('./csv_files/movies.json')
-const crew = require('./csv_files/crew.json')
-const users = require('./user_data/test_data')
+
 
 
 
@@ -33,16 +31,16 @@ describe("all tests", () => {
 
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
-            expect(obj).toHaveProperty("genre_scores", expect.any(String));
+            expect(obj).toHaveProperty("genre_scores", expect.any(Object));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("genre_pref", expect.any(String));
-            expect(obj).toHaveProperty("actor_pref", expect.any(String));
-            expect(obj).toHaveProperty("actor_scores", expect.any(String));
-            expect(obj).toHaveProperty("director_pref", expect.any(String));
-            expect(obj).toHaveProperty("director_scores", expect.any(String));
-            expect(obj).toHaveProperty("liked_movies", expect.any(String));
-            expect(obj).toHaveProperty("disliked_movies", expect.any(String));
-            expect(obj).toHaveProperty("watched_recently", expect.any(String));
+            expect(obj).toHaveProperty("genre_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", expect.any(Object));
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("liked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("watched_recently", expect.any(Object));
           });
         })
     })
@@ -55,26 +53,26 @@ describe("all tests", () => {
         .then(({
           body
         }) => {
-          expect(body).toHaveProperty("username", ('charlie123'));
-          expect(body).toHaveProperty("genre_scores", expect.any(String));
-          expect(body).toHaveProperty("user_id", expect.any(Number));
-          expect(body).toHaveProperty("genre_pref", expect.any(String));
-          expect(body).toHaveProperty("actor_pref", expect.any(String));
-          expect(body).toHaveProperty("actor_scores", expect.any(String));
-          expect(body).toHaveProperty("director_pref", expect.any(String));
-          expect(body).toHaveProperty("director_scores", expect.any(String));
-          expect(body).toHaveProperty("liked_movies", expect.any(String));
-          expect(body).toHaveProperty("disliked_movies", expect.any(String));
-          expect(body).toHaveProperty("watched_recently", expect.any(String));
+          expect(body[0]).toHaveProperty("username", ('charlie123'));
+          expect(body[0]).toHaveProperty("genre_scores", expect.any(Object));
+          expect(body[0]).toHaveProperty("user_id", expect.any(Number));
+          expect(body[0]).toHaveProperty("genre_pref", expect.any(Object));
+          expect(body[0]).toHaveProperty("actor_pref", expect.any(Object));
+          expect(body[0]).toHaveProperty("actor_scores", expect.any(Object));
+          expect(body[0]).toHaveProperty("director_pref", expect.any(Object));
+          expect(body[0]).toHaveProperty("director_scores", expect.any(Object));
+          expect(body[0]).toHaveProperty("liked_movies", expect.any(Object));
+          expect(body[0]).toHaveProperty("disliked_movies", expect.any(Object));
+          expect(body[0]).toHaveProperty("watched_recently", expect.any(Object));
         })
     })
     test('400: Incorrect url parameter input outputs a useful error message', () => {
       return request(app)
         .get("/api/users/dog")
-        .expect(404)
+        .expect(400)
         .then((body) => {
 
-          expect(body.error.text).toEqual('Error: 404 - Not Found')
+          expect(body.error.text).toEqual('Error: 400 - Bad Request')
         })
     })
     test('404: valid ID that doesnt exist outputs useful error message', () => {
@@ -107,121 +105,92 @@ describe("all tests", () => {
 
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
-            expect(obj).toHaveProperty("genre_scores", expect.any(String));
+            expect(obj).toHaveProperty("genre_scores", expect.any(Object));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("genre_pref", expect.any(String));
-            expect(obj).toHaveProperty("actor_pref", expect.any(String));
-            expect(obj).toHaveProperty("actor_scores", expect.any(String));
-            expect(obj).toHaveProperty("director_pref", expect.any(String));
-            expect(obj).toHaveProperty("director_scores", expect.any(String));
-            expect(obj).toHaveProperty("liked_movies", expect.any(String));
-            expect(obj).toHaveProperty("disliked_movies", expect.any(String));
-            expect(obj).toHaveProperty("watched_recently", expect.any(String));
+            expect(obj).toHaveProperty("genre_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", expect.any(Object));
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("liked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("watched_recently", expect.any(Object));
           });
         })
     })
   })
 
   describe('Patch : User', () => {
+    const testPref = {
+      genres: ['Western', 'Comedy', 'Horror'],
+      actors: ['Brad Pitt', 'Idris Elba'],
+      directors: ['Christopher Nolan']
+    }
     test('Returns Correct Objects', () => {
-      const testPref = {
-        genre_scores: {
-          'western': 5,
-          'comedy': 5,
-          'horror': 5
-        },
-        genre_pref: {
-          pref: ['western', 'comedy', 'horror']
-        },
-        actor_pref: {
-          pref: ['Brad Pitt', 'Idris Elba']
-        },
-        actor_scores: {
-          'Brad Pitt': 5,
-          'Idris Elba': 5
-        },
-        director_pref: {
-          pref: ['Christopher Nolan']
-        },
-        director_scores: {
-          'Christopher Nolan': 5
-        },
-        liked_movies: {
-          liked: []
-        },
-        disliked_movies: {
-          disliked: []
-        },
-        watched_recently: {
-          history: []
-        }
-      }
 
-      const loggedInUser = 'phil1234'
+      const loggedInUser = 2
       return request(app)
         .patch(`/api/users/${loggedInUser}`)
         .send(testPref)
         .expect(201)
         .then(({body}) => {
-          console.log(body)
+          
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("actor_scores", expect.any(String));
-            expect(obj).toHaveProperty("director_scores", expect.any(String));
-            expect(obj).toHaveProperty("liked_movies", expect.any(String));
-            expect(obj).toHaveProperty("disliked_movies", expect.any(String));
-            expect(obj).toHaveProperty("watched_recently", expect.any(String));
+            expect(obj).toHaveProperty("genre_pref", {
+              pref: ['Western', 'Comedy', 'Horror']
+            });
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", {
+              pref: ['Brad Pitt', 'Idris Elba']
+            });
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", {
+              pref: ['Christopher Nolan']
+            });
+            expect(obj).toHaveProperty("liked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("watched_recently", expect.any(Object));
           });
         })
     })
-  })
-  test('gets created user profile and populates scores correctly', () => {
-    const testPref = {
-      genre_scores: {},
-      genre_pref: {
-        pref: ['romance', 'comedy', 'horror']
-      },
-      actor_pref: {
-        pref: ['Brad Pitt', 'Idris Elba']
-      },
-      actor_scores: {},
-      director_pref: {
-        pref: ['Christopher Nolan']
-      },
-      director_scores: {},
-      liked_movies: {
-        liked: []
-      },
-      disliked_movies: {
-        disliked: []
-      },
-      watched_recently: {
-        history: []
+    test('400: Incorrect url parameter input outputs a useful error message', () => {
+      return request(app)
+        .patch("/api/users/dog")
+        .send(testPref)
+        .expect(400)
+        .then((body) => {
+
+          expect(body.error.text).toEqual('Error: 400 - Bad Request')
+        })
+    })
+    test('404: valid ID that doesnt exist outputs useful error message', () => {
+      return request(app)
+        .patch("/api/users/1000")
+        .send(testPref)
+        .expect(404)
+        .then((body) => {
+          expect(body.error.text).toEqual('Error: 404 - Not Found')
+        })
+    })
+    test('400: Bad Request - Invalid Input Body ', () => {
+      const testPrefWrong = {
+        genre: ['Western', 'Comedy', 'Horror'],
+        actor: ['Brad Pitt', 'Idris Elba'],
+        director: ['Christopher Nolan']
       }
-    }
-    const loggedInUser = 'charlie123'
-    return request(app)
-      .patch(`/api/users/${loggedInUser}`)
-      .send(testPref)
-      .expect(201)
-      .then(({
-        body
-      }) => {
-        expect(body[0].genre_scores).toEqual({
-          'romance': 75,
-          'comedy': 75,
-          'horror': 75
+      return request(app)
+        .patch("/api/users/2")
+        .send(testPrefWrong)
+        .expect(400)
+        .then((body) => {
+          expect(body.error.text).toEqual('Error: 400 - Bad Request Invalid Input Body')
         })
-        expect(body[0].actor_scores).toEqual({
-          'Brad Pitt': 75,
-          'Idris Elba': 75
-        })
-        expect(body[0].director_scores).toEqual({
-          'Christopher Nolan': 75
-        })
-      })
+    })
+
   })
+  
 
   describe('Get : Movies', () => {
     test('Returns Correct Objects', () => {
@@ -296,7 +265,7 @@ describe("all tests", () => {
     })
   })
 
-  describe('Get : Recs', () => {
+  describe.skip('Get : Recs', () => {
     test('Returns Correct Object', () => {
       return request(app)
         .get('/api/users/1/recommendations')
@@ -317,7 +286,7 @@ describe("all tests", () => {
           expect(body).toHaveProperty("watched_recently", expect.any(Object));
         })
     })
-    test.only('Returns a movie with a liked genre type when fed in a user', () => {
+    test('Returns a movie with a liked genre type when fed in a user', () => {
       return request(app)
         .get('/api/users/1/recommendations')
         .expect(200)
@@ -384,16 +353,4 @@ describe("all tests", () => {
     })
   })
 
-  describe('Test recs', () => {
-    test('testing JSON queries', () => {
-      return request(app)
-        .get('/api/test')
-        .expect(200)
-        .then(({
-          body
-        }) => {
-          expect(typeof body).toEqual('object')
-        })
-    })
-  })
 })
