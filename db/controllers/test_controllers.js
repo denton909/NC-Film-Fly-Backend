@@ -3,7 +3,6 @@ const {retrieveTest} = require('../models/test_models')
 
 function getUserTest(req, res, next) {
   return retrieveTest().then(response => {
-    console.log(response)
     res.status(200).send(response)
   })
 }

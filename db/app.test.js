@@ -330,7 +330,6 @@ describe("all tests", () => {
         .then(({
           body
         }) => {
-          console.log(body)
           expect(typeof body).toBe('object')
         })
     })

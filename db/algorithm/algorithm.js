@@ -117,7 +117,6 @@ function retrieveRecs(id) {
                     )
 
                     const top10Recs = totalScoresSorted.slice(0, 10)
-                    console.log(top10Recs)
 
                     const top10RecsArr = top10Recs.map(rec => {
                         return rec.title

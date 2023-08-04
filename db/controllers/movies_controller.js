@@ -35,7 +35,6 @@ function getActors(req, res, next) {
 function getRecs(req, res, next) {
     const id = req.params.user_id
     retrieveRecs(id).then((response) => {
-        console.log(response)
         res.status(200).send(response)
     })
     .catch(next)
