@@ -9,7 +9,7 @@ function retrieveGenres (){
     .then((rows)=> {
         let result = {}
         rows.forEach((row) => {
-            const genres = JSON.parse(row.genres)
+            const genres = row.genres
             
             
             genres.forEach((genre)=> {

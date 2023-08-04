@@ -126,7 +126,7 @@ describe("all tests", () => {
       actors: ['Brad Pitt', 'Idris Elba'],
       directors: ['Christopher Nolan']
     }
-    test.only('Returns Correct Objects', () => {
+    test('Returns Correct Objects', () => {
 
       const loggedInUser = 2
       return request(app)
@@ -134,7 +134,6 @@ describe("all tests", () => {
         .send(testPref)
         .expect(201)
         .then(({body}) => {
-          console.log(body[0].genre_pref)
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
@@ -265,28 +264,8 @@ describe("all tests", () => {
     })
   })
 
-  describe.skip('Get : Recs', () => {
-    test('Returns Correct Object', () => {
-      return request(app)
-        .get('/api/users/1/recommendations')
-        .expect(200)
-        .then(({
-          body
-        }) => {
-          expect(body).toHaveProperty("username", ('charlie123'));
-          expect(body).toHaveProperty("genre_scores", expect.any(Object));
-          expect(body).toHaveProperty("user_id", expect.any(Number));
-          expect(body).toHaveProperty("genre_pref", expect.any(Object));
-          expect(body).toHaveProperty("actor_pref", expect.any(Object));
-          expect(body).toHaveProperty("actor_scores", expect.any(Object));
-          expect(body).toHaveProperty("director_pref", expect.any(Object));
-          expect(body).toHaveProperty("director_scores", expect.any(Object));
-          expect(body).toHaveProperty("liked_movies", expect.any(Object));
-          expect(body).toHaveProperty("disliked_movies", expect.any(Object));
-          expect(body).toHaveProperty("watched_recently", expect.any(Object));
-        })
-    })
-    test.only('Returns a movie with a liked genre type when fed in a user', () => {
+  describe('Get : Recs', () => {
+    test('Returns a movie with a liked genre type when fed in a user', () => {
       return request(app)
         .get('/api/users/1/recommendations')
         .expect(200)

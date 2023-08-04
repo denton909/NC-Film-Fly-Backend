@@ -38,7 +38,6 @@ app.patch('/api/users/:username/add-movie', patchMovie)
 
 
 app.use((err, req, res, next) => {
-   
     if(err.name === 'TypeError'){
        
         res.status(400).send('Error: 400 - Bad Request Invalid Input Body')

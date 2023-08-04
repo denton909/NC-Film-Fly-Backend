@@ -8,8 +8,10 @@ const {
 } = require('../algorithm/math-components')
 
 function retrieveRecs(id) {
+    
+
     return retrieveUser(id).then((response) => {
-            return response
+            return response[0]
         })
         .then((response) => {
             const genreScores = response.genre_scores
@@ -78,54 +80,53 @@ function retrieveRecs(id) {
             FROM movies
             INNER JOIN crew on movies.title = crew.title;
             `)
-                .then(({
-                    rows
-                }) => {
-                    const totalScores = rows.map(film => {
-                        let genreScore = 0;
-                        let genreCount = 0;
-                        let crewScore = 0;
-                        let crewCount = 0;
-                        let totalScore = 0;
-                        for (let score in film) {
-                            let aScore = parseInt(film[score])
-                            if (score !== 'title') {
-                                if (score === 'war' || score == 'crime' || score == 'drama' || score == 'music' || score == 'action' || score == 'comedy' || score == 'family' || score == 'horror' || score == 'fantasy' || score == 'foreign' || score == 'history' || score == 'mystery' || score == 'romance' || score == 'western' || score == 'tv_movie' || score == 'thriller' || score == 'adventure' || score == 'animation' || score == 'documentary' || score == 'science_fiction') {
-                                    genreScore += aScore
-                                    if (aScore > 0) {
-                                        genreCount++
-                                    }
-                                } else {
-                                    crewScore += aScore
-                                    if (aScore > 0) {
-                                        crewCount++
-                                    }
-                                }
-                                if (crewCount === 0) {
-                                    totalScore = (genreScore / genreCount)
-                                } else {
-                                    totalScore = (crewScore / crewCount) + (genreScore / genreCount)
-                                }
+        })
+        .then(({
+            rows
+        }) => {
+            const totalScores = rows.map(film => {
+                let genreScore = 0;
+                let genreCount = 0;
+                let crewScore = 0;
+                let crewCount = 0;
+                let totalScore = 0;
+                for (let score in film) {
+                    let aScore = parseInt(film[score])
+                    if (score !== 'title') {
+                        if (score === 'war' || score == 'crime' || score == 'drama' || score == 'music' || score == 'action' || score == 'comedy' || score == 'family' || score == 'horror' || score == 'fantasy' || score == 'foreign' || score == 'history' || score == 'mystery' || score == 'romance' || score == 'western' || score == 'tv_movie' || score == 'thriller' || score == 'adventure' || score == 'animation' || score == 'documentary' || score == 'science_fiction') {
+                            genreScore += aScore
+                            if (aScore > 0) {
+                                genreCount++
+                            }
+                        } else {
+                            crewScore += aScore
+                            if (aScore > 0) {
+                                crewCount++
                             }
                         }
-                        film.totalScore = totalScore
-                        return film
-                    })
+                        if (crewCount === 0) {
+                            totalScore = (genreScore / genreCount)
+                        } else {
+                            totalScore = (crewScore / crewCount) + (genreScore / genreCount)
+                        }
+                    }
+                }
+                film.totalScore = totalScore
+                return film
+            })
 
-                    const totalScoresSorted = totalScores.sort((a, b) =>
-                        (a.totalScore < b.totalScore) ? 1 : (a.totalScore > b.totalScore) ? -1 : 0
-                    )
+            const totalScoresSorted = totalScores.sort((a, b) =>
+                (a.totalScore < b.totalScore) ? 1 : (a.totalScore > b.totalScore) ? -1 : 0
+            )
 
-                    const top10Recs = totalScoresSorted.slice(0, 10)
+            const top10Recs = totalScoresSorted.slice(0, 10)
 
-                    const top10RecsArr = top10Recs.map(rec => {
-                        return rec.title
-                    })
-                    return top10RecsArr
-                })
-
-
+            const top10RecsArr = top10Recs.map(rec => {
+                return rec.title
+            })
+            return top10RecsArr
         })
+
 }
 
 

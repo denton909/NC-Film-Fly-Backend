@@ -58,7 +58,6 @@ function updateUser(pref, user) {
     }
     
     pref.genres.forEach(genre => {
-        
         test.genre_pref.pref.push(genre)
         test.genre_scores[genre] = 75
     })
@@ -72,11 +71,9 @@ function updateUser(pref, user) {
         test.director_scores[director] = 75
     })
 
-    
     const values = [test.genre_scores, test.genre_pref, test.actor_pref, test.actor_scores, test.director_pref, test.director_scores, test.liked_movies, test.disliked_movies, test.watched_recently, user]
     return db.query('UPDATE users SET genre_scores = $1, genre_pref = $2, actor_pref = $3, actor_scores = $4, director_pref = $5, director_scores = $6, liked_movies = $7, disliked_movies = $8, watched_recently = $9 WHERE user_id = $10 RETURNING *;', values)
     .then(({rows})=> {
-        console.log(rows[0].genre_pref)
         return idCheck(user, rows)
 
     })
@@ -88,7 +85,6 @@ function updateMovie({movie}, user) {
         return rows
     })
     .then((rows) => {
-        console.log(rows)
         const values = [rows[0].watched_recently, rows[0].username]
         return db.query('UPDATE users SET watched_recently = $1 WHERE username = $2 RETURNING *', values)
     })
