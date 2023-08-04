@@ -20,7 +20,7 @@
         
     },
     {
-        "GET USER (by username)" : "/api/users/:username",
+        "GET USER (by user Id)" : "/api/users/:user_id",
         "Response" : "All columns for a specific user"
     },
 
@@ -51,19 +51,15 @@
         "Response" : "New User Object with empty preferences"
     },
     {
-         "PATCH USER" : "/api/users/:username",
+         "PATCH USER" : "/api/users/:user_id",
         "Request Body Format" : {
-            "genre_scores" : "{'romance' : 5, 'comedy' : 5, 'horror' : 5}", 
-            "genre_pref" : "{ pref : ['romance', 'comedy', 'horror']}", 
-            "actor_pref" : "{ pref : ['Brad Pitt', 'Idris Elba']}",  
-            "actor_scores" : "{'Brad Pitt' : 5, 'Idris Elba' : 5}",  
-            "director_pref" : "{ pref : ['Christopher Nolan']}", 
-            "director_scores" : "{'Christopher Nolan' : 5}",
-            "liked_movies" : "{liked : []}", 
-            "disliked_movies" : "{ disliked : []}",
-            "watched_recently" : "{ history : []}"
+                "genres": ["Western", "Comedy", "Horror"],
+                "actors": ["Brad Pitt", "Idris Elba"],
+                "directors": ["Christopher Nolan"]
+              
         },
-        "Tip" : "Username URL param is added to patch method",
+        "Tip" : "User_id URL param is added to patch method",
+        "Tip 2" : "Key values are data type array not string",
         "Response" : "New User Object with empty preferences"
     }
 

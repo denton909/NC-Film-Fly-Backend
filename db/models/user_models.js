@@ -29,7 +29,7 @@ function retrieveUser(id){
     return db.query('SELECT * FROM users WHERE user_id = $1;', values)
         .then(({rows}) => {
         
-            return idCheck(id, rows[0])
+            return idCheck(id, rows)
         })
 }
 
@@ -44,22 +44,40 @@ function createUser(user) {
 }
 
 function updateUser(pref, user) {
-
-    pref.genre_pref.pref.forEach(genre => {
-        pref.genre_scores[genre] = 75
+    
+    let test = {
+                genre_scores : {}, 
+                genre_pref : { pref : []}, 
+                actor_pref : { pref : []},  
+                actor_scores : {},  
+                director_pref : { pref : []}, 
+                director_scores : {},
+                liked_movies : {liked : []}, 
+                disliked_movies : { disliked : []},
+                watched_recently : { history : []}
+    }
+    
+    pref.genres.forEach(genre => {
+        
+        test.genre_pref.pref.push(genre)
+        test.genre_scores[genre] = 75
     })
-    pref.actor_pref.pref.forEach(actor => {
-        pref.actor_scores[actor] = 75
+    pref.actors.forEach(actor => {
+       
+        test.actor_pref.pref.push(actor)
+        test.actor_scores[actor] = 75
     })
-    pref.director_pref.pref.forEach(director => {
-        pref.director_scores[director] = 75
+    pref.directors.forEach(director => {
+        test.director_pref.pref.push(director)
+        test.director_scores[director] = 75
     })
 
-
-    const values = [pref.genre_scores, pref.genre_pref, pref.actor_pref, pref.actor_scores, pref.director_pref, pref.director_scores, pref.liked_movies, pref.disliked_movies, pref.watched_recently, user]
-    return db.query('UPDATE users SET genre_scores = $1, genre_pref = $2, actor_pref = $3, actor_scores = $4, director_pref = $5, director_scores = $6, liked_movies = $7, disliked_movies = $8, watched_recently = $9 WHERE username = $10 RETURNING *;', values)
+    
+    const values = [test.genre_scores, test.genre_pref, test.actor_pref, test.actor_scores, test.director_pref, test.director_scores, test.liked_movies, test.disliked_movies, test.watched_recently, user]
+    return db.query('UPDATE users SET genre_scores = $1, genre_pref = $2, actor_pref = $3, actor_scores = $4, director_pref = $5, director_scores = $6, liked_movies = $7, disliked_movies = $8, watched_recently = $9 WHERE user_id = $10 RETURNING *;', values)
     .then(({rows})=> {
-        return rows
+        console.log(rows[0].genre_pref)
+        return idCheck(user, rows)
 
     })
 }

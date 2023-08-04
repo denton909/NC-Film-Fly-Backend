@@ -34,11 +34,12 @@ function postUsers (req, res, next) {
 
 function patchUsers (req, res, next) {
     const input = req.body
-    const user = req.params.username
+    const user = req.params.user_id
     updateUser(input, user).then((response)=> {
         return res.status(201).send(response)
 
     })
+    .catch(next)
     
 }
 
@@ -46,7 +47,7 @@ function patchMovie (req, res, next) {
     const input = req.body
     const user = req.params.username 
     return updateMovie(input, user).then(({rows}) => {
-        console.log(rows[0].watched_recently)
+       
         return res.status(201).send(rows)
     })
 }

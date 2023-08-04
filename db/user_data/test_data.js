@@ -58,39 +58,17 @@ const users = () => {
             username: 'phil1234',
             email_address: 'phil1234@outlook.com',
             password: 'password1234',
-            genre_scores: {
-                'action': 5,
-                'thriller': 5,
-                'crime': 5
-            },
-            genre_pref: {
-                pref: ['action', 'thriller', 'crime']
-            },
-            actor_pref: {
-                pref: ['Brad Pitt', 'Idris Elba', 'Denzel Washington']
-            },
-            actor_scores: {
-                'Brad Pitt': 5,
-                'Idris Elba': 5,
-                'Denzel Washington': 5
-            },
-            director_pref: {
-                pref: ['Christopher Nolan']
-            },
-            director_scores: {
-                'Christopher Nolan': 5
-            },
-            liked_movies: {
-                liked: []
-            },
-            disliked_movies: {
-                disliked: []
-            },
-            watched_recently: {
-                history: []
-            }
-        }
-    ]
+            genre_scores : {}, 
+            genre_pref : { pref : []}, 
+            actor_pref : { pref : []},  
+            actor_scores : {},  
+            director_pref : { pref : []}, 
+            director_scores : {},
+            liked_movies : {liked : []}, 
+            disliked_movies : { disliked : []},
+            watched_recently : { history : []}
+    }
+]
 }
 
 module.exports = users

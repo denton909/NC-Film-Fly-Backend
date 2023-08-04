@@ -9,17 +9,22 @@ function retrieveGenres (){
     .then((rows)=> {
         let result = {}
         rows.forEach((row) => {
-            const genres = (row.genres)
+            const genres = JSON.parse(row.genres)
+            
             
             genres.forEach((genre)=> {
+            
                 if(result[genre.name] === undefined){
                     result[genre.name] = 1
+                    
                 } else {
                     result[genre.name]++
                 }
                 
             })
         })
+        
+    
         return {genres: Object.keys(result)}
     })
 

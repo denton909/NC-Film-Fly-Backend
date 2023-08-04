@@ -30,7 +30,7 @@ const seed = () => {
     })
     .then(()=> {
 
-        return db.query('DROP TABLE IF EXISTS test_table')
+        return db.query('DROP TABLE IF EXISTS recommendations')
         
     })
     .then(()=> {
@@ -48,9 +48,6 @@ const seed = () => {
     })
     .then(()=> {
         return db.query('CREATE TABLE actors (actor_id SERIAL PRIMARY KEY, name TEXT, number_of_films INT)')
-    })
-    .then(()=> {
-        return db.query('CREATE TABLE test_table (id SERIAL PRIMARY KEY, name TEXT, genres JSONB)')
     })
     .then(()=> {
 
@@ -89,13 +86,6 @@ const seed = () => {
             return [actor.name, actor.number_of_films]
         })))
     })
-    .then(() => {
-        return db.query(format('INSERT INTO test_table (name, genres) VALUES %L;', test.map((testArticle) => {
-            return [testArticle.name, JSON.stringify(testArticle.genres)]
-        })))
-    })
-
-
 
 }
 
