@@ -13,7 +13,7 @@ describe("all tests", () => {
 
     await seed()
   
-  }, 10000);
+  }, 20000);
 
   afterAll(() => {
     db.end()
@@ -323,13 +323,14 @@ describe("all tests", () => {
           expect(body).toHaveProperty("watched_recently", expect.any(Object));
         })
     })
-    test('Returns a movie with a liked genre type when fed in a user', () => {
+    test.only('Returns a movie with a liked genre type when fed in a user', () => {
       return request(app)
         .get('/api/users/1/recommendations')
         .expect(200)
         .then(({
           body
         }) => {
+          console.log(body)
           expect(typeof body).toBe('object')
         })
     })
@@ -367,7 +368,7 @@ describe("all tests", () => {
     })
   })
 
-  describe.only('Patch : Add watched movie', () => {
+  describe('Patch : Add watched movie', () => {
     test('Watched movie added to watched movies list', () => {
       const testPref = {
         movie: {

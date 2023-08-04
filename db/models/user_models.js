@@ -70,6 +70,7 @@ function updateMovie({movie}, user) {
         return rows
     })
     .then((rows) => {
+        console.log(rows)
         const values = [rows[0].watched_recently, rows[0].username]
         return db.query('UPDATE users SET watched_recently = $1 WHERE username = $2 RETURNING *', values)
     })
