@@ -126,7 +126,7 @@ describe("all tests", () => {
       actors: ['Brad Pitt', 'Idris Elba'],
       directors: ['Christopher Nolan']
     }
-    test('Returns Correct Objects', () => {
+    test.only('Returns Correct Objects', () => {
 
       const loggedInUser = 2
       return request(app)
@@ -134,7 +134,7 @@ describe("all tests", () => {
         .send(testPref)
         .expect(201)
         .then(({body}) => {
-          
+          console.log(body[0].genre_pref)
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));

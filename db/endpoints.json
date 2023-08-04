@@ -53,9 +53,9 @@
     {
          "PATCH USER" : "/api/users/:user_id",
         "Request Body Format" : {
-                "genres": "['Western', 'Comedy', 'Horror']",
-                "actors": "['Brad Pitt', 'Idris Elba']",
-                "directors": "['Christopher Nolan']"
+                "genres": ["Western", "Comedy", "Horror"],
+                "actors": ["Brad Pitt", "Idris Elba"],
+                "directors": ["Christopher Nolan"]
               
         },
         "Tip" : "User_id URL param is added to patch method",

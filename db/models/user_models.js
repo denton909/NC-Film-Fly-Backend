@@ -76,6 +76,7 @@ function updateUser(pref, user) {
     const values = [test.genre_scores, test.genre_pref, test.actor_pref, test.actor_scores, test.director_pref, test.director_scores, test.liked_movies, test.disliked_movies, test.watched_recently, user]
     return db.query('UPDATE users SET genre_scores = $1, genre_pref = $2, actor_pref = $3, actor_scores = $4, director_pref = $5, director_scores = $6, liked_movies = $7, disliked_movies = $8, watched_recently = $9 WHERE user_id = $10 RETURNING *;', values)
     .then(({rows})=> {
+        console.log(rows[0].genre_pref)
         return idCheck(user, rows)
 
     })
