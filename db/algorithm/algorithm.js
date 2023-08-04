@@ -71,7 +71,6 @@ function retrieveRecs(id) {
                     directorAsks += ","
                 }
             }
-
             return db.query(`
             SELECT movies.title,
             ${genreAsks},

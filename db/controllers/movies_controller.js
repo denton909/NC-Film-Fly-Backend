@@ -14,6 +14,7 @@ function getGenres(req, res, next) {
     retrieveGenres().then((response) => {
         res.status(200).send(response)
     })
+    .catch(next)
 }
 
 function getDirectors(req, res, next) {
