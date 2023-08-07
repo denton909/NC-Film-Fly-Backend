@@ -44,8 +44,9 @@ function createUser(user) {
 }
 
 function updateUser(pref, user, query) {
+
     
-    if(!query){
+    if(Object.keys(query).length === 0){
     let test = {
                 genre_scores : {}, 
                 genre_pref : { pref : []}, 
@@ -111,7 +112,6 @@ function updateUser(pref, user, query) {
        return db.query(`UPDATE users SET liked_movies= $1, disliked_movies = $2 WHERE user_id = $3 RETURNING *;`, values)
         
     }).then(({rows})=> {
-        console.log(rows[0])
         return rows
     })
 }

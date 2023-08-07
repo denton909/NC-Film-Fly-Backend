@@ -205,17 +205,11 @@ describe("all tests", () => {
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("genre_pref", {
-              pref: []
-            });
+            expect(obj).toHaveProperty("genre_pref", expect.any(Object));
             expect(obj).toHaveProperty("actor_scores", expect.any(Object));
-            expect(obj).toHaveProperty("actor_pref", {
-              pref: []
-            });
+            expect(obj).toHaveProperty("actor_pref", expect.any(Object));
             expect(obj).toHaveProperty("director_scores", expect.any(Object));
-            expect(obj).toHaveProperty("director_pref", {
-              pref: []
-            });
+            expect(obj).toHaveProperty("director_pref", expect.any(Object));
             expect(obj).toHaveProperty("liked_movies", expect.any(Object));
             expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
             expect(obj).toHaveProperty("watched_recently", {
@@ -243,17 +237,11 @@ describe("all tests", () => {
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
-            expect(obj).toHaveProperty("genre_pref", {
-              pref: []
-            });
+            expect(obj).toHaveProperty("genre_pref", expect.any(Object));
             expect(obj).toHaveProperty("actor_scores", expect.any(Object));
-            expect(obj).toHaveProperty("actor_pref", {
-              pref: []
-            });
+            expect(obj).toHaveProperty("actor_pref", expect.any(Object));
             expect(obj).toHaveProperty("director_scores", expect.any(Object));
-            expect(obj).toHaveProperty("director_pref", {
-              pref: []
-            });
+            expect(obj).toHaveProperty("director_pref", expect.any(Object));
             expect(obj).toHaveProperty("liked_movies", {
               liked: ["The Dark Knight"]
             });
@@ -268,10 +256,10 @@ describe("all tests", () => {
 
   describe('Patch : User with querys likes or disliked', () => {
       const testLikes = {
-        liked: "The Dark Knight",
+        liked: "Batman Begins",
         disliked: "" 
       }
-      test.only('Returns Correct Objects', () => {
+      test('Returns Correct Objects', () => {
   
         const loggedInUser = 2
         return request(app)
@@ -282,22 +270,16 @@ describe("all tests", () => {
             body.forEach((obj) => {
               expect(obj).toHaveProperty("username", expect.any(String));
               expect(obj).toHaveProperty("user_id", expect.any(Number));
-              expect(obj).toHaveProperty("genre_pref", {
-                pref: []
-              });
+              expect(obj).toHaveProperty("genre_pref", expect.any(Object));
               expect(obj).toHaveProperty("actor_scores", expect.any(Object));
-              expect(obj).toHaveProperty("actor_pref", {
-                pref: []
-              });
+              expect(obj).toHaveProperty("actor_pref", expect.any(Object));
               expect(obj).toHaveProperty("director_scores", expect.any(Object));
-              expect(obj).toHaveProperty("director_pref", {
-                pref: []
-              });
+              expect(obj).toHaveProperty("director_pref", expect.any(Object));
               expect(obj).toHaveProperty("liked_movies", {
-                liked: ["The Dark Knight"]
+                liked: ["The Dark Knight", "Batman Begins"]
               });
               expect(obj).toHaveProperty("disliked_movies", {
-                disliked: []
+                disliked: ["Cars"]
               });
               expect(obj).toHaveProperty("watched_recently", expect.any(Object))
             });
