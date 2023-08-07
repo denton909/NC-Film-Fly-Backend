@@ -25,6 +25,21 @@
     },
 
     {
+        "GET USER RECOMMENDATIONS (by user Id)" : "/api/users/:user_id/recommendations",
+        "Response" : "Array of 10 movie titles",
+        "Example Response": ["A League of Their Own",
+        "The Reaping",
+        "Mr. & Mrs. Smith",
+        "The Mexican",
+        "Avengers: Age of Ultron",
+        "Pacific Rim",
+        "Star Trek Beyond",
+        "Thor: The Dark World",
+        "Thor",
+        "Spy Game"]
+    },
+
+    {
         "GET MOVIES" : "/api/movies",
         "Response" : "All 5000 movies with all columns"
     },
