@@ -189,6 +189,84 @@ describe("all tests", () => {
     })
 
   })
+
+  describe('Patch : User with querys history', () => {
+    const testWatched = {
+      watched_recently: "cars"
+    }
+    test.only('Returns Correct Objects', () => {
+
+      const loggedInUser = 2
+      return request(app)
+        .patch(`/api/users/${loggedInUser}?update=watched_recently`)
+        .send(testWatched)
+        .expect(201)
+        .then(({body}) => {
+          body.forEach((obj) => {
+            expect(obj).toHaveProperty("username", expect.any(String));
+            expect(obj).toHaveProperty("user_id", expect.any(Number));
+            expect(obj).toHaveProperty("genre_pref", {
+              pref: []
+            });
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", {
+              pref: []
+            });
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", {
+              pref: []
+            });
+            expect(obj).toHaveProperty("liked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("watched_recently", {
+              history: ["cars"]
+            });
+          });
+        })
+    })
+
+  })
+
+  describe('Patch : User with querys likes and dislikes', () => {
+    const testLikes = {
+      liked: "The Dark Knight",
+      disliked: "Cars" 
+    }
+    test.only('Returns Correct Objects', () => {
+
+      const loggedInUser = 2
+      return request(app)
+        .patch(`/api/users/${loggedInUser}?update=likes`)
+        .send(testLikes)
+        .expect(201)
+        .then(({body}) => {
+          body.forEach((obj) => {
+            expect(obj).toHaveProperty("username", expect.any(String));
+            expect(obj).toHaveProperty("user_id", expect.any(Number));
+            expect(obj).toHaveProperty("genre_pref", {
+              pref: []
+            });
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", {
+              pref: []
+            });
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", {
+              pref: []
+            });
+            expect(obj).toHaveProperty("liked_movies", {
+              liked: ["The Dark Knight"]
+            });
+            expect(obj).toHaveProperty("disliked_movies", {
+              disliked: ["Cars"]
+            });
+            expect(obj).toHaveProperty("watched_recently", expect.any(Object))
+          });
+          });
+        })
+    })
+
+  
   
 
   describe('Get : Movies', () => {

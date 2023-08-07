@@ -43,8 +43,9 @@ function createUser(user) {
         })
 }
 
-function updateUser(pref, user) {
+function updateUser(pref, user, query) {
     
+    if(!query){
     let test = {
                 genre_scores : {}, 
                 genre_pref : { pref : []}, 
@@ -77,6 +78,35 @@ function updateUser(pref, user) {
         return idCheck(user, rows)
 
     })
+} else if (query.update === "watched_recently"){
+    return db.query(`SELECT watched_recently FROM users WHERE user_id = 2;`).then(({rows})=> {
+        
+        return rows[0]
+    }).then((rows)=> {
+        rows.watched_recently.history.push(pref.watched_recently)
+        const values = [rows.watched_recently, user]
+       return db.query(`UPDATE users SET watched_recently= $1 WHERE user_id = $2 RETURNING *;`, values)
+        
+    }).then(({rows})=> {
+        return rows
+    })
+   
+} else if (query.update === "likes"){
+    return db.query(`SELECT liked_movies, disliked_movies FROM users WHERE user_id = 2;`).then(({rows})=> {
+        
+        return rows[0]
+    }).then((rows)=> {
+        rows.liked_movies.liked.push(pref.liked)
+        rows.disliked_movies.disliked.push(pref.disliked)
+        console.log(rows)
+        const values = [rows.liked_movies, rows.disliked_movies, user]
+       return db.query(`UPDATE users SET liked_movies= $1, disliked_movies = $2 WHERE user_id = $3 RETURNING *;`, values)
+        
+    }).then(({rows})=> {
+        console.log(rows[0])
+        return rows
+    })
+}
 }
 
 function updateMovie({movie}, user) {

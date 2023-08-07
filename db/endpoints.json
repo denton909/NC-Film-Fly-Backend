@@ -67,7 +67,7 @@
     },
     {
          "PATCH USER" : "/api/users/:user_id",
-        "Request Body Format" : {
+         "Request Body Format" : {
                 "genres": ["Western", "Comedy", "Horror"],
                 "actors": ["Brad Pitt", "Idris Elba"],
                 "directors": ["Christopher Nolan"]
@@ -76,7 +76,21 @@
         "Tip" : "User_id URL param is added to patch method",
         "Tip 2" : "Key values are data type array not string",
         "Response" : "New User Object with empty preferences"
-    }
+    },
+    {
+        "PATCH USER WITH query's" : "/api/users/:user_id",
+        "query's": ["update=watched_recently", "update=likes"],
+        "query Body Format watched_recently" : {
+            "watched_recently": "cars"  
+       },
+        "query Body Format likes" : {
+            "liked": "The Dark Knight",
+            "disliked": "Cars"    
+       },
+       "Tip" : "User_id URL param is added to patch method",
+       "Tip 2" : "Key values are data type array not string",
+       "Response" : "New User Object with empty preferences"
+   }
 
   
 ]

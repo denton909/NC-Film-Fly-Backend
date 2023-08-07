@@ -33,9 +33,10 @@ function postUsers (req, res, next) {
 }
 
 function patchUsers (req, res, next) {
+    const query = req.query
     const input = req.body
     const user = req.params.user_id
-    updateUser(input, user).then((response)=> {
+    updateUser(input, user, query).then((response)=> {
         return res.status(201).send(response)
 
     })
