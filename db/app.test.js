@@ -194,7 +194,7 @@ describe("all tests", () => {
     const testWatched = {
       watched_recently: "cars"
     }
-    test.only('Returns Correct Objects', () => {
+    test('Returns Correct Objects', () => {
 
       const loggedInUser = 2
       return request(app)
@@ -232,7 +232,7 @@ describe("all tests", () => {
       liked: "The Dark Knight",
       disliked: "Cars" 
     }
-    test.only('Returns Correct Objects', () => {
+    test('Returns Correct Objects', () => {
 
       const loggedInUser = 2
       return request(app)
@@ -265,6 +265,45 @@ describe("all tests", () => {
           });
         })
     })
+
+  describe('Patch : User with querys likes or disliked', () => {
+      const testLikes = {
+        liked: "The Dark Knight",
+        disliked: "" 
+      }
+      test.only('Returns Correct Objects', () => {
+  
+        const loggedInUser = 2
+        return request(app)
+          .patch(`/api/users/${loggedInUser}?update=likes`)
+          .send(testLikes)
+          .expect(201)
+          .then(({body}) => {
+            body.forEach((obj) => {
+              expect(obj).toHaveProperty("username", expect.any(String));
+              expect(obj).toHaveProperty("user_id", expect.any(Number));
+              expect(obj).toHaveProperty("genre_pref", {
+                pref: []
+              });
+              expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+              expect(obj).toHaveProperty("actor_pref", {
+                pref: []
+              });
+              expect(obj).toHaveProperty("director_scores", expect.any(Object));
+              expect(obj).toHaveProperty("director_pref", {
+                pref: []
+              });
+              expect(obj).toHaveProperty("liked_movies", {
+                liked: ["The Dark Knight"]
+              });
+              expect(obj).toHaveProperty("disliked_movies", {
+                disliked: []
+              });
+              expect(obj).toHaveProperty("watched_recently", expect.any(Object))
+            });
+            });
+          })
+      })
 
   
   

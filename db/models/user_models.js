@@ -96,9 +96,17 @@ function updateUser(pref, user, query) {
         
         return rows[0]
     }).then((rows)=> {
-        rows.liked_movies.liked.push(pref.liked)
-        rows.disliked_movies.disliked.push(pref.disliked)
-        console.log(rows)
+        if(pref.liked.length === 0){
+            rows.disliked_movies.disliked.push(pref.disliked)
+        } else if (pref.disliked.length === 0){
+            rows.liked_movies.liked.push(pref.liked)
+        } else {
+            rows.liked_movies.liked.push(pref.liked)
+            rows.disliked_movies.disliked.push(pref.disliked)
+        }
+
+
+       
         const values = [rows.liked_movies, rows.disliked_movies, user]
        return db.query(`UPDATE users SET liked_movies= $1, disliked_movies = $2 WHERE user_id = $3 RETURNING *;`, values)
         
