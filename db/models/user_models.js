@@ -128,7 +128,13 @@ function updateMovie({movie}, user) {
     })
 }
 
+function removeUser (user) {
+   
+    return db.query(`DELETE FROM users WHERE user_id = $1 `, [user])
+    
+}
 
 
 
-module.exports = { retrieveUser, createUser, updateUser, updateMovie }
+
+module.exports = { retrieveUser, createUser, updateUser, updateMovie, removeUser }

@@ -1,6 +1,6 @@
 const express = require('express')
 const fs = require('fs/promises')
-const { getUsers, getUser, postUsers, patchUsers, patchMovie } = require('./controllers/user_controllers')
+const { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser } = require('./controllers/user_controllers')
 const { getMovies, getRecs, getGenres, getDirectors, getActors } = require('./controllers/movies_controller')
 const getEndpoints = require('./controllers/endpoints_controller')
 
@@ -33,12 +33,16 @@ app.patch('/api/users/:user_id', patchUsers)
 
 app.patch('/api/users/:username/add-movie', patchMovie)
 
+app.delete('/api/users/:user_id', deleteUser)
 
 
 
 
 app.use((err, req, res, next) => {
-    
+    if(err.code === '23505'){
+        
+        res.status(400).send('Error: 400 - Bad Request Username or email address is already used')
+    }
     if(err.name === 'TypeError'){
        
         res.status(400).send('Error: 400 - Bad Request Invalid Input Body')

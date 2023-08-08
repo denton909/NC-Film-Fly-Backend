@@ -86,6 +86,37 @@ describe("all tests", () => {
     })
   })
 
+  // describe('Get : User with password check', () => {
+  //   test('Returns Correct Object', () => {
+  //     return request(app)
+  //       .get('/api/users/1?login=password')
+  //       .expect(200)
+  //       .then(({
+  //         body
+  //       }) => {
+  //        expect(body).toBe(true)
+  //       })
+  //   })
+  //   test('400: Incorrect url parameter input outputs a useful error message', () => {
+  //     return request(app)
+  //       .get("/api/users/dog")
+  //       .expect(400)
+  //       .then((body) => {
+
+  //         expect(body.error.text).toEqual('Error: 400 - Bad Request')
+  //       })
+  //   })
+  //   test('404: valid ID that doesnt exist outputs useful error message', () => {
+  //     return request(app)
+  //       .get("/api/users/1000")
+  //       .expect(404)
+  //       .then((body) => {
+
+  //         expect(body.error.text).toEqual('Error: 404 - Not Found')
+  //       })
+  //   })
+  // })
+
   describe('Post : User', () => {
     test('Returns Correct Objects', () => {
       const testUser = {
@@ -116,6 +147,24 @@ describe("all tests", () => {
             expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
             expect(obj).toHaveProperty("watched_recently", expect.any(Object));
           });
+        })
+    })
+    test('Returns 400 for duplicate user', () => {
+      const testUser = {
+        name: 'phil',
+        username: 'phil1234',
+        email_address: 'phil1234@outlook.com',
+        password: '123password',
+
+      }
+      return request(app)
+        .post('/api/users')
+        .send(testUser)
+        .expect(400)
+        .then((
+          body
+        ) => {
+          expect(body.text).toEqual('Error: 400 - Bad Request Username or email address is already used')
         })
     })
   })
@@ -287,7 +336,16 @@ describe("all tests", () => {
           })
       })
 
-  
+  describe('Delete : User', () => {
+       
+        test.only('Returns 204 after user is deleted', () => {
+    
+          const loggedInUser = 2
+          return request(app)
+            .delete(`/api/users/${loggedInUser}`)
+            .expect(204)
+            })
+        })
   
 
   describe('Get : Movies', () => {

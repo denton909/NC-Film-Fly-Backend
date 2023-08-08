@@ -25,7 +25,7 @@ function retrieveGenres (){
         })
         
     
-        return {genres: Object.keys(result)}
+        return {genres: Object.keys(result).sort()}
     })
 
 }
@@ -38,7 +38,7 @@ function retrieveDirectors (){
         rows.forEach((row) => {
             directorList.push(row.name)
         })
-        return {directors: directorList}
+        return {directors: directorList.sort()}
     })
 
 
@@ -52,7 +52,7 @@ function retrieveActors (){
         rows.forEach((row) => {
             actorList.push(row.name)
         })
-        return {actors: actorList}
+        return {actors: actorList.sort()}
     })
 
 }

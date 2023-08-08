@@ -1,5 +1,5 @@
 const db = require('../connection')
-const { retrieveUser, createUser, updateUser, updateMovie } = require('../models/user_models')
+const { retrieveUser, createUser, updateUser, updateMovie, removeUser } = require('../models/user_models')
 
 
 
@@ -28,7 +28,7 @@ function postUsers (req, res, next) {
     const input = req.body
     createUser(input).then((response)=>{
         return res.status(201).send(response)
-    })
+    }).catch(next)
     
 }
 
@@ -44,6 +44,14 @@ function patchUsers (req, res, next) {
     
 }
 
+function deleteUser (req, res, next) {
+    const user = req.params.user_id
+    removeUser(user).then((response)=>{
+        
+        res.status(204).send()
+    }).catch(next)
+}
+
 function patchMovie (req, res, next) {
     const input = req.body
     const user = req.params.username 
@@ -53,4 +61,4 @@ function patchMovie (req, res, next) {
     })
 }
 
-module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie }
+module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser }

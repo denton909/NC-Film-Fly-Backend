@@ -38,7 +38,7 @@ const seed = () => {
     })
     .then(()=>{
 
-        return db.query('CREATE TABLE users (user_id SERIAL PRIMARY KEY, name VARCHAR(30), username VARCHAR(30) NOT NULL, email_address VARCHAR(50) NOT NULL, password VARCHAR(30) NOT NULL, genre_scores JSONB, genre_pref JSONB, actor_pref JSONB, actor_scores JSONB, director_pref JSONB, director_scores JSONB, liked_movies JSONB, disliked_movies JSONB, watched_recently JSONB)')
+        return db.query('CREATE TABLE users (user_id SERIAL PRIMARY KEY, name VARCHAR(30), username VARCHAR(30) NOT NULL, email_address VARCHAR(50) NOT NULL, password VARCHAR(30) NOT NULL, genre_scores JSONB, genre_pref JSONB, actor_pref JSONB, actor_scores JSONB, director_pref JSONB, director_scores JSONB, liked_movies JSONB, disliked_movies JSONB, watched_recently JSONB, UNIQUE(username, email_address) )')
     })
     .then(()=> {
         return db.query('CREATE TABLE crew (movie_id INT, title TEXT, "cast" JSONB, crew JSONB)')
