@@ -1,7 +1,7 @@
 const express = require('express')
 const fs = require('fs/promises')
 const { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser } = require('./controllers/user_controllers')
-const { getMovies, getRecs, getGenres, getDirectors, getActors } = require('./controllers/movies_controller')
+const { getMovies, getRecs, getRecsTitles, getGenres, getDirectors, getActors } = require('./controllers/movies_controller')
 const getEndpoints = require('./controllers/endpoints_controller')
 
 
@@ -20,6 +20,8 @@ app.get('/api/movies', getMovies)
 // app.get('/api/movies/:genre', getMoviesByGenre)
 
 app.get('/api/users/:user_id/recommendations', getRecs)
+
+app.get('/api/users/:user_id/recommendations/titles', getRecsTitles)
 
 app.get('/api/movies/genres', getGenres)
 
@@ -61,8 +63,8 @@ app.use((err, req, res, next) => {
 
 
 
-// const { PORT = 9090 } = process.env;
+const { PORT = 9090 } = process.env;
 
-// app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
+app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
 
 module.exports = app

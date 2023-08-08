@@ -338,7 +338,7 @@ describe("all tests", () => {
 
   describe('Delete : User', () => {
        
-        test.only('Returns 204 after user is deleted', () => {
+        test('Returns 204 after user is deleted', () => {
     
           const loggedInUser = 2
           return request(app)
@@ -425,6 +425,38 @@ describe("all tests", () => {
     test('Returns a movie with a liked genre type when fed in a user', () => {
       return request(app)
         .get('/api/users/1/recommendations')
+        .expect(200)
+        .then(({
+          body
+        }) => {
+          expect(typeof body).toBe('object')
+        })
+    })
+
+    // test('400: Incorrect url parameter input outputs a useful error message', () => {
+    //     return request(app)
+    //     .get("/api/users/1/recommendations")
+    //     .expect(404)
+    //     .then((body) => {
+
+    //       expect(body.error.text).toEqual('Error: 404 - Not Found')
+    //     })
+    //   })
+    //   test('404: valid ID that doesnt exist outputs useful error message', () => {
+    //     return request(app)
+    //     .get("/api/users/1000")
+    //     .expect(404)
+    //     .then((body) => {
+
+    //       expect(body.error.text).toEqual('Error: 404 - Not Found')
+    //     })
+    //   })
+  })
+
+  describe.only('Get : Recs Titles', () => {
+    test('Returns a movie with a liked genre type when fed in a user', () => {
+      return request(app)
+        .get('/api/users/1/recommendations/titles')
         .expect(200)
         .then(({
           body

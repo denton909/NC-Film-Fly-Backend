@@ -1,5 +1,5 @@
 const db = require('../connection')
-const { retrieveRecs } = require('../algorithm/algorithm')
+const { retrieveRecs, retrieveRecsTitles } = require('../algorithm/algorithm')
 const { retrieveGenres, retrieveDirectors, retrieveActors } = require('../models/movies_models')
 
 function getMovies(req, res, next) {
@@ -36,10 +36,17 @@ function getActors(req, res, next) {
 function getRecs(req, res, next) {
     const id = req.params.user_id
     retrieveRecs(id).then((response) => {
-        console.log("response", response)
         res.status(200).send(response)
     })
     .catch(next)
 }
 
-module.exports = { getMovies, getRecs, getGenres, getDirectors, getActors}
+function getRecsTitles(req, res, next) {
+    const id = req.params.user_id
+    retrieveRecsTitles(id).then((response) => {
+        res.status(200).send(response)
+    })
+    .catch(next)
+}
+
+module.exports = { getMovies, getRecs, getRecsTitles, getGenres, getDirectors, getActors}
