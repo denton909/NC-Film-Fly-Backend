@@ -124,17 +124,10 @@ function retrieveRecs(id) {
                 return rec.title
             })
 
-            const titlesWhere = `WHERE movies.title = '${top10RecsArr[0]}' OR movies.title = '${top10RecsArr[1]}' OR movies.title = '${top10RecsArr[2]}' OR movies.title = '${top10RecsArr[3]}' OR movies.title = '${top10RecsArr[4]}' OR movies.title = '${top10RecsArr[5]}' OR movies.title = '${top10RecsArr[6]}' OR movies.title = '${top10RecsArr[7]}' OR movies.title = '${top10RecsArr[8]} OR movies.title = '${top10RecsArr[9]}'`
+            const titlesWhere = `WHERE movies.title = '${top10RecsArr[0]}' OR movies.title = '${top10RecsArr[1]}' OR movies.title = '${top10RecsArr[2]}' OR movies.title = '${top10RecsArr[3]}' OR movies.title = '${top10RecsArr[4]}' OR movies.title = '${top10RecsArr[5]}' OR movies.title = '${top10RecsArr[6]}' OR movies.title = '${top10RecsArr[7]}' OR movies.title = '${top10RecsArr[8]}' OR movies.title = '${top10RecsArr[9]}'`
 
 
-            // dbReturn = `
-            // SELECT title, genres, original_language, tagline, overview, release_date, vote_average
-            // FROM movies
-            // ${titlesWhere};
-            // `
-            // console.log(dbReturn)
-
-            dbReturn2 = `
+            const dbReturn = `
             SELECT movies.title, movies.genres, movies.original_language, movies.tagline, movies.overview, movies.release_date, movies.vote_average,
             crew.title, crew.cast, crew.crew
             FROM movies
@@ -142,16 +135,14 @@ function retrieveRecs(id) {
             ${titlesWhere};
             `
 
-            console.log(dbReturn2)
-
-            return db.query(dbReturn2)
+            return db.query(dbReturn)
             
         }).then(({rows}) => {
-            console.log(rows)
             return rows
         })
 
 }
+
 
 
 module.exports = {
