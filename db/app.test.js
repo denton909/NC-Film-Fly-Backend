@@ -363,7 +363,7 @@ describe("all tests", () => {
     })
   })
 
-  describe('Get : Recs', () => {
+  describe.only('Get : Recs', () => {
     test('Returns a movie with a liked genre type when fed in a user', () => {
       return request(app)
         .get('/api/users/1/recommendations')

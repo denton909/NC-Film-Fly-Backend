@@ -8,7 +8,7 @@ const {
 } = require('../algorithm/math-components')
 
 function retrieveRecs(id) {
-    
+
 
     return retrieveUser(id).then((response) => {
             return response[0]
@@ -123,7 +123,32 @@ function retrieveRecs(id) {
             const top10RecsArr = top10Recs.map(rec => {
                 return rec.title
             })
-            return top10RecsArr
+
+            const titlesWhere = `WHERE movies.title = '${top10RecsArr[0]}' OR movies.title = '${top10RecsArr[1]}' OR movies.title = '${top10RecsArr[2]}' OR movies.title = '${top10RecsArr[3]}' OR movies.title = '${top10RecsArr[4]}' OR movies.title = '${top10RecsArr[5]}' OR movies.title = '${top10RecsArr[6]}' OR movies.title = '${top10RecsArr[7]}' OR movies.title = '${top10RecsArr[8]} OR movies.title = '${top10RecsArr[9]}'`
+
+
+            // dbReturn = `
+            // SELECT title, genres, original_language, tagline, overview, release_date, vote_average
+            // FROM movies
+            // ${titlesWhere};
+            // `
+            // console.log(dbReturn)
+
+            dbReturn2 = `
+            SELECT movies.title, movies.genres, movies.original_language, movies.tagline, movies.overview, movies.release_date, movies.vote_average,
+            crew.title, crew.cast, crew.crew
+            FROM movies
+            INNER JOIN crew on movies.title = crew.title
+            ${titlesWhere};
+            `
+
+            console.log(dbReturn2)
+
+            return db.query(dbReturn2)
+            
+        }).then(({rows}) => {
+            console.log(rows)
+            return rows
         })
 
 }
