@@ -138,7 +138,6 @@ function retrieveRecs(id) {
             return db.query(dbReturn)
             
         }).then(({rows}) => {
-            console.log("rows", rows)
             return rows
         })
 
