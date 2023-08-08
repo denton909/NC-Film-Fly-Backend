@@ -86,36 +86,84 @@ describe("all tests", () => {
     })
   })
 
-  // describe('Get : User with password check', () => {
-  //   test('Returns Correct Object', () => {
-  //     return request(app)
-  //       .get('/api/users/1?login=password')
-  //       .expect(200)
-  //       .then(({
-  //         body
-  //       }) => {
-  //        expect(body).toBe(true)
-  //       })
-  //   })
-  //   test('400: Incorrect url parameter input outputs a useful error message', () => {
-  //     return request(app)
-  //       .get("/api/users/dog")
-  //       .expect(400)
-  //       .then((body) => {
+  describe('Post : User with password check', () => {
+    test.only('Returns Correct Object', () => {
+      const testUser = {
+        name: 'billy',
+        username: 'billy1234',
+        email_address: 'billy1234@outlook.com',
+        password: 'password1234',
 
-  //         expect(body.error.text).toEqual('Error: 400 - Bad Request')
-  //       })
-  //   })
-  //   test('404: valid ID that doesnt exist outputs useful error message', () => {
-  //     return request(app)
-  //       .get("/api/users/1000")
-  //       .expect(404)
-  //       .then((body) => {
+      }
+      return request(app)
+      .post('api/users')
+      .send(testUser)
+      .expect(200)
+      .then((body)=> {
+        console.log(body)
+        return request(app)
+        .post('/api/users/2')
+        .send(testUser)
+        .expect(200)
+        .then(({body})=>{
+          expect(body[0]).toHaveProperty("username", ('billy123'));
+          expect(body[0]).toHaveProperty("genre_scores", expect.any(Object));
+          expect(body[0]).toHaveProperty("user_id", expect.any(Number));
+          expect(body[0]).toHaveProperty("genre_pref", expect.any(Object));
+          expect(body[0]).toHaveProperty("actor_pref", expect.any(Object));
+          expect(body[0]).toHaveProperty("actor_scores", expect.any(Object));
+          expect(body[0]).toHaveProperty("director_pref", expect.any(Object));
+          expect(body[0]).toHaveProperty("director_scores", expect.any(Object));
+          expect(body[0]).toHaveProperty("liked_movies", expect.any(Object));
+          expect(body[0]).toHaveProperty("disliked_movies", expect.any(Object));
+          expect(body[0]).toHaveProperty("watched_recently", expect.any(Object));
+        })
+      })
 
-  //         expect(body.error.text).toEqual('Error: 404 - Not Found')
-  //       })
-  //   })
-  // })
+
+      // return request(app)
+      //   .post('/api/users/2')
+      //   .send(testUser)
+      //   .expect(200)
+      //   .then(({
+      //     body
+      //   }) => {
+      //     expect(body[0]).toHaveProperty("username", ('billy123'));
+      //     expect(body[0]).toHaveProperty("genre_scores", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("user_id", expect.any(Number));
+      //     expect(body[0]).toHaveProperty("genre_pref", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("actor_pref", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("actor_scores", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("director_pref", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("director_scores", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("liked_movies", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("disliked_movies", expect.any(Object));
+      //     expect(body[0]).toHaveProperty("watched_recently", expect.any(Object));
+      //   })
+    })
+    test('Returns 401 password incorrect ', () => {
+      const testUser = {
+        name: 'phil',
+        username: 'phil1234',
+        email_address: 'phil1234@outlook.com',
+        password: '123',
+
+      }
+      return request(app)
+        .post('/api/users/2')
+        .send(testUser)
+        .expect(401)
+        .then((
+          body
+        ) => {
+          console.log(body)
+          expect(body.text).toEqual('Error: 401 - Unauthorized Password')
+        })
+    })
+
+  })
+
+  
 
   describe('Post : User', () => {
     test('Returns Correct Objects', () => {
@@ -338,7 +386,7 @@ describe("all tests", () => {
 
   describe('Delete : User', () => {
        
-        test.only('Returns 204 after user is deleted', () => {
+        test('Returns 204 after user is deleted', () => {
     
           const loggedInUser = 2
           return request(app)
