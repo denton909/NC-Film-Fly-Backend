@@ -1,6 +1,6 @@
 const express = require('express')
 const fs = require('fs/promises')
-const { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser, postUser } = require('./controllers/user_controllers')
+const { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser,login } = require('./controllers/user_controllers')
 const { getMovies, getRecs, getGenres, getDirectors, getActors } = require('./controllers/movies_controller')
 const getEndpoints = require('./controllers/endpoints_controller')
 
@@ -18,7 +18,7 @@ app.get('/api/users', getUsers)
 
 app.get('/api/users/:user_id', getUser)
 
-app.post('/api/users/:user_id', postUser)
+app.post('/api/users/login', login)
 
 app.get('/api/movies', getMovies)
 

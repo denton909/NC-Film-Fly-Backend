@@ -25,9 +25,8 @@ function getUser (req, res, next){
     .catch(next)
 }
 
-function postUser (req, res, next) {
+function login (req, res, next) {
     const input = req.body
-    
     userPasswordCheck(input).then((response)=> {
         console.log(response)
         return res.status(200).send(response)
@@ -75,4 +74,4 @@ function patchMovie (req, res, next) {
     })
 }
 
-module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser, postUser}
+module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser, login}

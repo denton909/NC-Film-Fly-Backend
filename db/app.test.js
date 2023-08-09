@@ -93,42 +93,41 @@ describe("all tests", () => {
         username: 'billy1234',
         email_address: 'billy1234@outlook.com',
         password: 'password1234',
-
       }
-      // return request(app)
-      // .post('api/users')
-      // .send(testUser)
-      // .expect(200)
-      // .then((body)=> {
-      //   console.log(body)
-      //   return request(app)
-      //   .post('/api/users/2')
-      //   .send(testUser)
-      //   .expect(200)
-      //   .then(({body})=>{
-      //     expect(body[0]).toHaveProperty("username", ('billy123'));
-      //     expect(body[0]).toHaveProperty("genre_scores", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("user_id", expect.any(Number));
-      //     expect(body[0]).toHaveProperty("genre_pref", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("actor_pref", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("actor_scores", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("director_pref", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("director_scores", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("liked_movies", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("disliked_movies", expect.any(Object));
-      //     expect(body[0]).toHaveProperty("watched_recently", expect.any(Object));
-      //   })
-      // })
-
-
-      return request(app)
-        .post('/api/users/2')
+      const loginDetails = {
+        username: 'billy1234',
+        password: 'password1234'
+      }
+        return request(app)
+        .post('/api/users')
         .send(testUser)
-        .expect(200)
+        .expect(201)
+        .then(({body})=> {
+          body.forEach((obj) => {
+            expect(obj).toHaveProperty("username", expect.any(String));
+            expect(obj).toHaveProperty("genre_scores", expect.any(Object));
+            expect(obj).toHaveProperty("user_id", expect.any(Number));
+            expect(obj).toHaveProperty("genre_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", expect.any(Object));
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("liked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("disliked_movies", expect.any(Object));
+            expect(obj).toHaveProperty("watched_recently", expect.any(Object));
+          });
+          return body
+        })
+        .then((body)=> {
+         return request(app)
+          .post('/api/users/login')
+          .send(loginDetails)
+          .expect(200)
+        })
         .then(({
           body
         }) => {
-          expect(body[0]).toHaveProperty("username", ('billy123'));
+          expect(body[0]).toHaveProperty("username", ('billy1234'));
           expect(body[0]).toHaveProperty("genre_scores", expect.any(Object));
           expect(body[0]).toHaveProperty("user_id", expect.any(Number));
           expect(body[0]).toHaveProperty("genre_pref", expect.any(Object));
@@ -143,27 +142,30 @@ describe("all tests", () => {
     })
     test('Returns 401 password incorrect ', () => {
       const testUser = {
-        name: 'phil',
-        username: 'phil1234',
-        email_address: 'phil1234@outlook.com',
-        password: '123',
-
+        name: 'billy',
+        username: 'billy1234',
+        email_address: 'billy1234@outlook.com',
+        password: 'password1234',
       }
-      return request(app)
-        .post('/api/users/2')
-        .send(testUser)
-        .expect(401)
+      const loginDetails = {
+        username: 'billy1234',
+        password: 'password'
+      }
+                
+         return request(app)
+          .post('/api/users/login')
+          .send(loginDetails)
+          .expect(401)
+        
         .then((
           body
         ) => {
-         
           expect(body.text).toEqual('Error: 401 - Unauthorized Password')
-        })
+        })   
+      
     })
 
   })
-
-  
 
   describe('Post : User', () => {
     test('Returns Correct Objects', () => {

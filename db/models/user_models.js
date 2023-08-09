@@ -73,12 +73,6 @@ function createUser(user) {
             return rows
         })
         
-        // return db.query('INSERT INTO users (name, username, email_address, password, genre_scores, genre_pref, actor_pref, actor_scores, director_pref, director_scores, liked_movies, disliked_movies, watched_recently) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;', values)
-        // .then(({rows})=> {
-            
-        //     return rows
-
-        // })
 }
 
 function updateUser(pref, user, query) {
