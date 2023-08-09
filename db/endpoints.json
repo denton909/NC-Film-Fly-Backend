@@ -92,12 +92,17 @@
        "Response" : "New User Object with empty preferences"
    },
    {
-    "POST USER LOGIN" : "/api/users.login",
+    "POST USER LOGIN" : "/api/users/login",
     "Request Body Format" : {
         "username" : "exampleusername",
         "password" : "password123"
     },
     "Response" : "User Object with empty preferences"
+},
+{
+    "DELETE USER" : "/api/users/2",
+    
+    "Response" : "Returns 204 after user is deleted"
 }
 
   
