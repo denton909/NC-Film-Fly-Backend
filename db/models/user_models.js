@@ -65,7 +65,7 @@ function createUser(user) {
             return response
         }).then((encryptedPassword)=>{
            
-             const values = [user.name, user.username, user.email_address, encryptedPassword, {}, {pref: []}, {pref: []}, {}, {pref: []}, {}, {liked: []}, {disliked: []}, {history: []} ]
+             const values = [user.name, user.username, user.email_address, user.password, {}, {pref: []}, {pref: []}, {}, {pref: []}, {}, {liked: []}, {disliked: []}, {history: []} ]
              
               return db.query('INSERT INTO users (name, username, email_address, password, genre_scores, genre_pref, actor_pref, actor_scores, director_pref, director_scores, liked_movies, disliked_movies, watched_recently) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;', values)
         }).then(({rows})=>{
