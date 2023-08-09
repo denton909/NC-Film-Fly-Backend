@@ -8,12 +8,13 @@ const {
 } = require('../algorithm/math-components')
 
 function retrieveRecs(id) {
-    
+    let userInfo;
 
     return retrieveUser(id).then((response) => {
             return response[0]
         })
         .then((response) => {
+            userInfo = response
             const genreScores = response.genre_scores
             const actorScores = response.actor_scores
             const directorScores = response.director_scores
@@ -102,7 +103,7 @@ function retrieveRecs(id) {
         .then(({
             rows
         }) => {
-            const totalScores = rows.map(film => {
+            const totalScores = rows.map(film => {    
                 let genreScore = 0;
                 let genreCount = 0;
                 let crewScore = 0;
@@ -132,10 +133,22 @@ function retrieveRecs(id) {
                 film.totalScore = totalScore
                 return film
             })
+            
 
-            const totalScoresSorted = totalScores.sort((a, b) =>
+            const totalScoresFiltered = totalScores.filter(movie => {
+                
+                if (userInfo.liked_movies.liked.includes(movie.title) || userInfo.disliked_movies.disliked.includes(movie.title)) {
+                    
+                } else {
+                    return movie
+                }
+            })
+
+            const totalScoresSorted = totalScoresFiltered.sort((a, b) =>
                 (a.totalScore < b.totalScore) ? 1 : (a.totalScore > b.totalScore) ? -1 : 0
             )
+
+            
 
             const top10Recs = totalScoresSorted.slice(0, 10)
 

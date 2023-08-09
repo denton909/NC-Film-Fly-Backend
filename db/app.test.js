@@ -493,6 +493,20 @@ describe("all tests", () => {
           expect(body.length).toBe(10)
         })
     })
+    test.only('Should not return movies that have already been liked or disliked', () => {
+      return request(app)
+        .get('/api/users/1/recommendations')
+        .expect(200)
+        .then(({
+          body
+        }) => {
+          for (let i = 0; i < 10; i++) {
+            expect(body[i]).not.toMatch('Fury')
+            expect(body[i]).not.toMatch('Captain Phillips')
+          }
+          
+        })
+    })
 
     // test('400: Incorrect url parameter input outputs a useful error message', () => {
     //     return request(app)
