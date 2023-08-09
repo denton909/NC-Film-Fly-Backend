@@ -28,7 +28,7 @@ function getUser (req, res, next){
 function login (req, res, next) {
     const input = req.body
     userPasswordCheck(input).then((response)=> {
-        console.log(response)
+        
         return res.status(200).send(response)
     }).catch(next)
     
