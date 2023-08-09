@@ -22,38 +22,7 @@ function retrieveRecs(id) {
             const actorScoreMultiplier = 5
             const directorScoreMultiplier = 5
 
-            let genreKeys = Object.keys(genreScores)
-            const genreKeysNoCapUS = genreKeys.map(genre => {
-                const genreArr = genre.split(" ")
-                const genreOut = genreArr.join("_")
-                return genreOut.toLowerCase()
-            })
 
-            let genreAsks = ""
-            for (let i = 0; i < genreKeys.length; i++) {
-                const singleGenreQuery = `(SELECT COUNT(*)*${genreScores[genreKeys[i]]}*${genreScoreMultiplier} AS ${genreKeysNoCapUS[i]} WHERE EXISTS (SELECT * FROM jsonb_array_elements(movies.genres) AS genre_obj WHERE genre_obj ->> 'name' LIKE '%${genreKeys[i]}%'))`
-                genreAsks += singleGenreQuery
-                if (i < genreKeys.length - 1) {
-                    genreAsks += ","
-                }
-            }
-
-            let actorKeys = Object.keys(actorScores)
-            const actorKeysNoCapUS = actorKeys.map(actor => {
-                const actorArr = actor.split(" ")
-                const actorOut = actorArr.join("_")
-                return actorOut.toLowerCase()
-            })
-
-            //This one just pulls the users current liked actors - probs more to do here
-            let actorAsks = ""
-            for (let i = 0; i < actorKeys.length; i++) {
-                const singleActorQuery = `(SELECT COUNT(*)*${actorScores[actorKeys[i]]}*${actorScoreMultiplier} AS ${actorKeysNoCapUS[i]} WHERE EXISTS (SELECT * FROM jsonb_array_elements(crew.cast) AS actor WHERE actor ->> 'name' LIKE '%${actorKeys[i]}%'))`
-                actorAsks += singleActorQuery
-                if (i < actorKeys.length - 1) {
-                    actorAsks += ","
-                }
-            }
 
             let directorKeys = Object.keys(directorScores)
             const directorKeysNoCapUS = directorKeys.map(director => {
@@ -71,14 +40,64 @@ function retrieveRecs(id) {
                     directorAsks += ","
                 }
             }
-            return db.query(`
-            SELECT movies.title,
-            ${genreAsks},
-            ${actorAsks},
+            
+            let actorKeys = Object.keys(actorScores)
+            const actorKeysNoCapUS = actorKeys.map(actor => {
+                const actorArr = actor.split(" ")
+                const actorOut = actorArr.join("_")
+                return actorOut.toLowerCase()
+            })
+            
+            //This one just pulls the users current liked actors - probs more to do here
+            let actorAsks = ""
+            for (let i = 0; i < actorKeys.length; i++) {
+                const singleActorQuery = `(SELECT COUNT(*)*${actorScores[actorKeys[i]]}*${actorScoreMultiplier} AS ${actorKeysNoCapUS[i]} WHERE EXISTS (SELECT * FROM jsonb_array_elements(crew.cast) AS actor WHERE actor ->> 'name' LIKE '%${actorKeys[i]}%'))`
+                actorAsks += singleActorQuery
+                if (i < actorKeys.length - 1) {
+                    actorAsks += ","
+                } if (i === actorKeys.length - 1 && directorAsks.length > 0) {
+                    actorAsks += ","
+                }
+            } 
+
+            let genreKeys = Object.keys(genreScores)
+            const genreKeysNoCapUS = genreKeys.map(genre => {
+                const genreArr = genre.split(" ")
+                const genreOut = genreArr.join("_")
+                return genreOut.toLowerCase()
+            })
+           
+            let genreAsks = ""
+            for (let i = 0; i < genreKeys.length; i++) {
+                const singleGenreQuery = `(SELECT COUNT(*)*${genreScores[genreKeys[i]]}*${genreScoreMultiplier} AS ${genreKeysNoCapUS[i]} WHERE EXISTS (SELECT * FROM jsonb_array_elements(movies.genres) AS genre_obj WHERE genre_obj ->> 'name' LIKE '%${genreKeys[i]}%'))`
+                genreAsks += singleGenreQuery
+                if (i < genreKeys.length - 1) {
+                    genreAsks += ","
+                } if (i === genreKeys.length - 1 && (actorAsks.length > 0 || directorAsks.length > 0)) {
+                    genreAsks += ","
+                }
+            }
+            
+
+            let movieTitleComma = ""
+            let innerJoinQuery = ""
+            if (genreAsks.length !== 0 || actorAsks.length !== 0 || directorAsks.length !== 0) {
+                movieTitleComma += ","
+                innerJoinQuery += "INNER JOIN crew on movies.title = crew.title"
+            }
+
+            
+            const query = `
+            SELECT movies.title${movieTitleComma}
+            ${genreAsks}
+            ${actorAsks}
             ${directorAsks}
             FROM movies
-            INNER JOIN crew on movies.title = crew.title;
-            `)
+            ${innerJoinQuery};
+            `
+
+
+            return db.query(query)
         })
         .then(({
             rows

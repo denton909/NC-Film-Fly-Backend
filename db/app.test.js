@@ -10,7 +10,7 @@ describe("all tests", () => {
   beforeAll(async () => {
 
     await seed()
-  
+
   }, 200000);
 
   afterAll(() => {
@@ -232,7 +232,9 @@ describe("all tests", () => {
         .patch(`/api/users/${loggedInUser}`)
         .send(testPref)
         .expect(201)
-        .then(({body}) => {
+        .then(({
+          body
+        }) => {
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
@@ -300,7 +302,9 @@ describe("all tests", () => {
         .patch(`/api/users/${loggedInUser}?update=watched_recently`)
         .send(testWatched)
         .expect(201)
-        .then(({body}) => {
+        .then(({
+          body
+        }) => {
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
@@ -323,7 +327,7 @@ describe("all tests", () => {
   describe('Patch : User with querys likes and dislikes', () => {
     const testLikes = {
       liked: "The Dark Knight",
-      disliked: "Cars" 
+      disliked: "Cars"
     }
     test('Returns Correct Objects', () => {
 
@@ -332,7 +336,9 @@ describe("all tests", () => {
         .patch(`/api/users/${loggedInUser}?update=likes`)
         .send(testLikes)
         .expect(201)
-        .then(({body}) => {
+        .then(({
+          body
+        }) => {
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
@@ -349,54 +355,46 @@ describe("all tests", () => {
             });
             expect(obj).toHaveProperty("watched_recently", expect.any(Object))
           });
-          });
-        })
+        });
     })
+  })
 
   describe('Patch : User with querys likes or disliked', () => {
-      const testLikes = {
-        liked: "Batman Begins",
-        disliked: "" 
-      }
-      test('Returns Correct Objects', () => {
-  
-        const loggedInUser = 2
-        return request(app)
-          .patch(`/api/users/${loggedInUser}?update=likes`)
-          .send(testLikes)
-          .expect(201)
-          .then(({body}) => {
-            body.forEach((obj) => {
-              expect(obj).toHaveProperty("username", expect.any(String));
-              expect(obj).toHaveProperty("user_id", expect.any(Number));
-              expect(obj).toHaveProperty("genre_pref", expect.any(Object));
-              expect(obj).toHaveProperty("actor_scores", expect.any(Object));
-              expect(obj).toHaveProperty("actor_pref", expect.any(Object));
-              expect(obj).toHaveProperty("director_scores", expect.any(Object));
-              expect(obj).toHaveProperty("director_pref", expect.any(Object));
-              expect(obj).toHaveProperty("liked_movies", {
-                liked: ["The Dark Knight", "Batman Begins"]
-              });
-              expect(obj).toHaveProperty("disliked_movies", {
-                disliked: ["Cars"]
-              });
-              expect(obj).toHaveProperty("watched_recently", expect.any(Object))
-            });
-            });
-          })
-      })
+    const testLikes = {
+      liked: "Batman Begins",
+      disliked: ""
+    }
+    test('Returns Correct Objects', () => {
 
-  describe('Delete : User', () => {
-       
-        test('Returns 204 after user is deleted', () => {
-    
-          const loggedInUser = 2
-          return request(app)
-            .delete(`/api/users/${loggedInUser}`)
-            .expect(204)
-            })
-        })
-  
+      const loggedInUser = 2
+      return request(app)
+        .patch(`/api/users/${loggedInUser}?update=likes`)
+        .send(testLikes)
+        .expect(201)
+        .then(({
+          body
+        }) => {
+          body.forEach((obj) => {
+            expect(obj).toHaveProperty("username", expect.any(String));
+            expect(obj).toHaveProperty("user_id", expect.any(Number));
+            expect(obj).toHaveProperty("genre_pref", expect.any(Object));
+            expect(obj).toHaveProperty("actor_scores", expect.any(Object));
+            expect(obj).toHaveProperty("actor_pref", expect.any(Object));
+            expect(obj).toHaveProperty("director_scores", expect.any(Object));
+            expect(obj).toHaveProperty("director_pref", expect.any(Object));
+            expect(obj).toHaveProperty("liked_movies", {
+              liked: ["The Dark Knight", "Batman Begins"]
+            });
+            expect(obj).toHaveProperty("disliked_movies", {
+              disliked: ["Cars"]
+            });
+            expect(obj).toHaveProperty("watched_recently", expect.any(Object))
+          });
+        });
+    })
+  })
+
+
 
   describe('Get : Movies', () => {
     test('Returns Correct Objects', () => {
@@ -472,7 +470,7 @@ describe("all tests", () => {
   })
 
   describe('Get : Recs', () => {
-    test('Returns a movie with a liked genre type when fed in a user', () => {
+    test('Returns 10 movies based on users preferences', () => {
       return request(app)
         .get('/api/users/1/recommendations')
         .expect(200)
@@ -480,6 +478,18 @@ describe("all tests", () => {
           body
         }) => {
           expect(typeof body).toBe('object')
+          expect(body.length).toBe(10)
+        })
+    })
+    test('Returns movies for a user that does not have any preferences', () => {
+      return request(app)
+        .get('/api/users/2/recommendations')
+        .expect(200)
+        .then(({
+          body
+        }) => {
+          expect(typeof body).toBe('object')
+          expect(body.length).toBe(10)
         })
     })
 
@@ -516,7 +526,17 @@ describe("all tests", () => {
     })
   })
 
-  describe('Patch : Add watched movie', () => {
+  describe('Delete : User', () => {
+
+    test('Returns 204 after user is deleted', () => {
+
+      const loggedInUser = 2
+      return request(app)
+        .delete(`/api/users/${loggedInUser}`)
+        .expect(204)
+    })
+  })
+
   describe('Patch : Add watched movie', () => {
     test('Watched movie added to watched movies list', () => {
       const testPref = {
@@ -538,6 +558,5 @@ describe("all tests", () => {
           expect(body[0]).toHaveProperty('watched_recently.history[0]', testPref.movie.name)
         })
     })
-  })
   })
 })
