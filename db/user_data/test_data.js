@@ -44,10 +44,10 @@ const users = () => {
                 'Christopher Nolan': 75
             },
             liked_movies: {
-                liked: []
+                liked: ['Fury']
             },
             disliked_movies: {
-                disliked: []
+                disliked: ['Captain Phillips']
             },
             watched_recently: {
                 history: []

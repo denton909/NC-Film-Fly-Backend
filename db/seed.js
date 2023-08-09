@@ -61,7 +61,6 @@ const seed = () => {
     .then(()=> {
   
         const query =  format(`INSERT INTO users (name, username, email_address, password, genre_scores, genre_pref, actor_pref, actor_scores, director_pref, director_scores, liked_movies, disliked_movies, watched_recently) VALUES %L;`, users().map((user) => {
-
             return [user.name, user.username, user.email_address, user.password, user.genre_scores, user.genre_pref, user.actor_pref, user.actor_scores, user.director_pref, user.director_scores, user.liked_movies, user.disliked_movies, user.watched_recently]
         } ))
         
