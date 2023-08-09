@@ -364,7 +364,7 @@ describe("all tests", () => {
       liked: "Batman Begins",
       disliked: ""
     }
-    test('Returns Correct Objects', () => {
+    test.only('Returns Correct Objects', () => {
 
       const loggedInUser = 2
       return request(app)
@@ -374,6 +374,7 @@ describe("all tests", () => {
         .then(({
           body
         }) => {
+          console.log(body)
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));
@@ -383,7 +384,7 @@ describe("all tests", () => {
             expect(obj).toHaveProperty("director_scores", expect.any(Object));
             expect(obj).toHaveProperty("director_pref", expect.any(Object));
             expect(obj).toHaveProperty("liked_movies", {
-              liked: ["The Dark Knight", "Batman Begins"]
+              liked: ["The Dark Knight","Batman Begins"]
             });
             expect(obj).toHaveProperty("disliked_movies", {
               disliked: ["Cars"]
