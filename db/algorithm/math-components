@@ -1,4 +1,4 @@
-function increaseScore(num) {
+function increaseScoreMaths(num) {
     if (num < 20) {
         return num + 25
     } else if (num < 40) {
@@ -12,14 +12,35 @@ function increaseScore(num) {
     }
 }
 
-// function increaseScore(num) {
-//     const increase = increaseScoreMaths(num)
-//     if (increase > 100) {
-//         return 100
-//     } else {return increase}
-// }
+function increaseScore(num) {
+    const increase = increaseScoreMaths(num)
+    if (increase > 100) {
+        return 100
+    } else {return increase}
+}
 
-function decreaseScore(num) {
+function increaseScoreByHalfMaths(num) {
+    if (num < 20) {
+        return num + 12
+    } else if (num < 40) {
+        return num + 10
+    } else if (num < 60) {
+        return num + 8
+    } else if (num < 80) {
+        return num + 5
+    } else if (num < 100) {
+        return num + 2
+    }
+}
+
+function increaseScoreByHalf(num) {
+    const increase = increaseScoreByHalfMaths(num)
+    if (increase > 100) {
+        return 100
+    } else {return increase}
+}
+
+function decreaseScoreMaths(num) {
   if (num > 80) {
       return num - 25
   } else if (num > 60) {
@@ -33,11 +54,32 @@ function decreaseScore(num) {
   }
 }
 
-// function decreaseScore(num) {
-//   const increase = increaseScoreMaths(num)
-//   if (increase < 0) {
-//       return 0
-//   } else {return increase}
-// }
+function decreaseScore(num) {
+  const decrease = decreaseScoreMaths(num)
+  if (decrease < 0) {
+      return 0
+  } else {return decrease}
+}
 
-module.exports = {increaseScore, decreaseScore}
+function decreaseScoreByHalfMaths(num) {
+    if (num > 80) {
+        return num - 12
+    } else if (num > 60) {
+        return num - 10
+    } else if (num > 40) {
+        return num - 8
+    } else if (num > 20) {
+        return num - 5
+    } else if (num > 0) {
+        return num - 2
+    }
+  }
+  
+  function decreaseScoreByHalf(num) {
+    const decrease = decreaseScoreByHalfMaths(num)
+    if (decrease < 0) {
+        return 0
+    } else {return decrease}
+  }
+
+module.exports = {increaseScore, increaseScoreByHalf, decreaseScore, decreaseScoreByHalf}
