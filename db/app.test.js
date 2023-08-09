@@ -364,7 +364,7 @@ describe("all tests", () => {
       liked: "Batman Begins",
       disliked: ""
     }
-    test.only('Returns Correct Objects', () => {
+    test('Returns Correct Objects', () => {
 
       const loggedInUser = 2
       return request(app)
@@ -374,7 +374,7 @@ describe("all tests", () => {
         .then(({
           body
         }) => {
-          console.log(body)
+          
           body.forEach((obj) => {
             expect(obj).toHaveProperty("username", expect.any(String));
             expect(obj).toHaveProperty("user_id", expect.any(Number));

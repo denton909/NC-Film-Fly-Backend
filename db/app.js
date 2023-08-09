@@ -26,7 +26,6 @@ app.get('/api/movies', getMovies)
 
 app.get('/api/users/:user_id/recommendations', getRecs)
 
-app.get('/api/users/:user_id/recommendations/titles', getRecsTitles)
 
 app.get('/api/movies/genres', getGenres)
 
