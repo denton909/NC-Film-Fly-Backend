@@ -1,5 +1,6 @@
 const db = require('../connection')
-const { retrieveUser, createUser, updateUser, updateMovie, removeUser } = require('../models/user_models')
+const { retrieveUser, createUser, updateUser, updateMovie, removeUser, userPasswordCheck } = require('../models/user_models')
+
 
 
 
@@ -24,6 +25,15 @@ function getUser (req, res, next){
     .catch(next)
 }
 
+function login (req, res, next) {
+    const input = req.body
+    userPasswordCheck(input).then((response)=> {
+        
+        return res.status(200).send(response)
+    }).catch(next)
+    
+}
+
 function postUsers (req, res, next) {
     const input = req.body
     createUser(input).then((response)=>{
@@ -31,6 +41,9 @@ function postUsers (req, res, next) {
     }).catch(next)
     
 }
+
+
+
 
 function patchUsers (req, res, next) {
     const query = req.query
@@ -61,4 +74,4 @@ function patchMovie (req, res, next) {
     })
 }
 
-module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser }
+module.exports = { getUsers, getUser, postUsers, patchUsers, patchMovie, deleteUser, login}
