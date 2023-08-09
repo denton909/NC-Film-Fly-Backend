@@ -29,7 +29,7 @@ function retrieveUser(id){
 
     return db.query('SELECT * FROM users WHERE user_id = $1;', values)
         .then(({rows}) => {
-            console.log(rows)
+            
             return idCheck(id, rows)
         })
 }
