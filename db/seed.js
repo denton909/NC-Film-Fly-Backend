@@ -11,7 +11,6 @@ const actors = require('./csv_files/actors.json')
 const test = require('./csv_files/test.json')
 
 
-
 const seed = () => {
     return db.query('DROP TABLE IF EXISTS movies')
     .then(() => {

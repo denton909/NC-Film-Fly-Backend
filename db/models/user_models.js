@@ -25,10 +25,9 @@ function idCheck(id, rows) {
 
 function retrieveUser(id){
     const values = [id]
-
+    
     return db.query('SELECT * FROM users WHERE user_id = $1;', values)
         .then(({rows}) => {
-        
             return idCheck(id, rows)
         })
 }
@@ -44,11 +43,30 @@ function createUser(user) {
 }
 
 function updateUser(pref, user, query) {
-
     
     if(Object.keys(query).length === 0){
     let test = {
-                genre_scores : {}, 
+                genre_scores : {                
+                "Action": 50,
+                "Adventure": 50,
+                "Fantasy": 50,
+                "Science Fiction": 50,
+                "Crime": 50,
+                "Drama": 50,
+                "Thriller": 50,
+                "Animation": 50,
+                "Family": 50,
+                "Western": 50,
+                "Romance": 50,
+                "Comedy": 50,
+                "Horror": 50,
+                "Mystery": 50,
+                "History": 50,
+                "War": 50,
+                "Music": 50,
+                "Documentary": 50,
+                "Foreign": 50,
+                "TV Movie": 50},
                 genre_pref : { pref : []}, 
                 actor_pref : { pref : []},  
                 actor_scores : {},  
