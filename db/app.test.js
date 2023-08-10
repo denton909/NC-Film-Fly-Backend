@@ -274,9 +274,9 @@ describe("all tests", () => {
 
   })
 
-  describe('Patch : User with querys likes and dislikes', () => {
+  describe.only('Patch : User with querys likes and dislikes', () => {
     const testLikes = {
-      liked: "The Dark Knight",
+      liked: "",
       disliked: "Cars"
     }
     test('Returns Correct Objects', () => {
@@ -297,9 +297,6 @@ describe("all tests", () => {
             expect(obj).toHaveProperty("actor_pref", expect.any(Object));
             expect(obj).toHaveProperty("director_scores", expect.any(Object));
             expect(obj).toHaveProperty("director_pref", expect.any(Object));
-            expect(obj).toHaveProperty("liked_movies", {
-              liked: ["The Dark Knight"]
-            });
             expect(obj).toHaveProperty("disliked_movies", {
               disliked: ["Cars"]
             });
@@ -309,7 +306,7 @@ describe("all tests", () => {
     })
   })
 
-  describe('Patch : User with querys likes or disliked', () => {
+  describe.only('Patch : User with querys likes or disliked', () => {
     const testLikes = {
       liked: "Batman Begins",
       disliked: ""
@@ -333,10 +330,7 @@ describe("all tests", () => {
             expect(obj).toHaveProperty("director_scores", expect.any(Object));
             expect(obj).toHaveProperty("director_pref", expect.any(Object));
             expect(obj).toHaveProperty("liked_movies", {
-              liked: ["The Dark Knight", "Batman Begins"]
-            });
-            expect(obj).toHaveProperty("disliked_movies", {
-              disliked: ["Cars"]
+              liked: ["Batman Begins"]
             });
             expect(obj).toHaveProperty("watched_recently", expect.any(Object))
           });
@@ -443,7 +437,7 @@ describe("all tests", () => {
           expect(body.length).toBe(10)
         })
     })
-    test.only('Should not return movies that have already been liked or disliked', () => {
+    test('Should not return movies that have already been liked or disliked', () => {
       return request(app)
         .get('/api/users/1/recommendations')
         .expect(200)

@@ -1,4 +1,5 @@
 const db = require('../connection')
+const {updateScores} = require('../algorithm/algorithm.js')
 
 function idCheck(id, rows) {
     const values = [id]
@@ -114,7 +115,8 @@ function updateUser(pref, user, query) {
     return db.query(`SELECT liked_movies, disliked_movies FROM users WHERE user_id = 2;`).then(({rows})=> {
         
         return rows[0]
-    }).then((rows)=> {
+    }).then(async (rows)=>{
+        
         if(pref.liked.length === 0){
             rows.disliked_movies.disliked.push(pref.disliked)
         } else if (pref.disliked.length === 0){
@@ -124,11 +126,12 @@ function updateUser(pref, user, query) {
             rows.disliked_movies.disliked.push(pref.disliked)
         }
 
-
+        await updateScores(pref, user)
        
         const values = [rows.liked_movies, rows.disliked_movies, user]
+
        return db.query(`UPDATE users SET liked_movies= $1, disliked_movies = $2 WHERE user_id = $3 RETURNING *;`, values)
-        
+       
     }).then(({rows})=> {
         return rows
     })
@@ -155,4 +158,4 @@ function removeUser (user) {
 
 
 
-module.exports = { retrieveUser, createUser, updateUser, updateMovie, removeUser }
+module.exports = { retrieveUser, createUser, updateUser, updateMovie, removeUser}
